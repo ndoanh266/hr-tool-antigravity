@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quy Tắc Tìm Kiếm File Theo Nội Dung</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="master_rules.html" class="nav-brand">Headhunter AI v1.6</a>
+            <div class="nav-menu">
+                <a href="master_rules.html" class="nav-link">Trang Chủ</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Trích Xuất ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_extract_cv.html">Trích xuất CV</a>
+                        <a href="rule_extract_jd.html">Trích xuất JD</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Chấm Điểm ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_score_cv.html">Chấm điểm CV</a>
+                        <a href="rule_score_jd.html">Chấm điểm JD</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Vận Hành ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_search_files.html">Tìm kiếm file</a>
+                        <a href="rule_summarize_client.html">Thông tin KH</a>
+                        <a href="rule_lookup_term.html">Tra thuật ngữ</a>
+                        <a href="rule_build_email.html">Viết Email</a>
+                        <a href="rule_suggest_script.html">Kịch bản chat</a>
+                        <a href="rule_create_ad.html">Tin tuyển dụng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <h1>Quy Tắc: Tìm Kiếm File Theo Nội Dung</h1>
+        
+        <h2>Quy Trình Thực Hiện:</h2>
+        <ol>
+            <li>
+                <strong>Bước 1: Xác định thư mục quét và từ khóa cần tìm</strong><br>
+                Nhận thông tin thư mục nguồn (quét đệ quy) và từ khóa/cụm từ cần tìm từ người dùng.
+            </li>
+            <li>
+                <strong>Bước 2: Thực thi script tìm kiếm file</strong><br>
+                Chạy: <code>python scripts/search_files.py --dir "<đường_dẫn_thư_mục>" --keyword "<từ_khóa>"</code><br>
+                <em>Mục đích:</em> Quét đệ quy toàn bộ thư mục để tìm các file chứa từ khóa (hỗ trợ .pdf, .docx, .doc, .xlsx, .xls, .csv, .txt).
+            </li>
+            <li>
+                <strong>Bước 3: Tổng hợp và hiển thị kết quả</strong><br>
+                Báo cáo danh sách tất cả các đường dẫn file chứa từ khóa tìm được cho người dùng.
+            </li>
+        </ol>
+    </div>
+</body>
+</html>

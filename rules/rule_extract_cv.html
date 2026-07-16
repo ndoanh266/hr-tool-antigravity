@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quy Tắc Trích Xuất Thông Tin CV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="master_rules.html" class="nav-brand">Headhunter AI v1.6</a>
+            <div class="nav-menu">
+                <a href="master_rules.html" class="nav-link">Trang Chủ</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Trích Xuất ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_extract_cv.html">Trích xuất CV</a>
+                        <a href="rule_extract_jd.html">Trích xuất JD</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Chấm Điểm ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_score_cv.html">Chấm điểm CV</a>
+                        <a href="rule_score_jd.html">Chấm điểm JD</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Vận Hành ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_search_files.html">Tìm kiếm file</a>
+                        <a href="rule_summarize_client.html">Thông tin KH</a>
+                        <a href="rule_lookup_term.html">Tra thuật ngữ</a>
+                        <a href="rule_build_email.html">Viết Email</a>
+                        <a href="rule_suggest_script.html">Kịch bản chat</a>
+                        <a href="rule_create_ad.html">Tin tuyển dụng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <h1>Quy Tắc: Trích Xuất Thông Tin Ứng Viên Từ CV Vào Excel/CSV</h1>
+        
+        <h2>Quy Trình Thực Hiện (Tối Ưu Chi Phí):</h2>
+        <ol>
+            <li>
+                <strong>Bước 1: Lấy các trường dữ liệu (tiêu đề cột) từ file Excel đích</strong><br>
+                Chạy: <code>python scripts/get_excel_fields.py --excel "<đường_dẫn_excel>"</code><br>
+                <em>Mục đích:</em> Lấy danh sách cột hiện tại để tránh làm lệch cột khi ghi dữ liệu.
+            </li>
+            <li>
+                <strong>Bước 2: Trích xuất nội dung văn bản từ file CV</strong><br>
+                Chạy: <code>python scripts/extract_text.py --input "<đường_dẫn_cv>"</code><br>
+                <em>Mục đích:</em> Đọc nội dung thô từ file PDF, DOCX, DOC hoặc XLSX/CSV.
+            </li>
+            <li>
+                <strong>Bước 3: Dịch thuật và phân tích thông tin CV trực tiếp bằng trí tuệ của AI Agent (Bạn)</strong><br>
+                <em>Mục đích:</em> AI Agent tự động dịch CV sang tiếng Việt và trích xuất thông tin khớp chính xác với tiêu đề cột thu được ở Bước 1 và các quy tắc định dạng bên dưới. Không sử dụng script API bên ngoài để tiết kiệm chi phí.<br>
+                <em>Đầu ra:</em> Một bảng Markdown gồm dòng tiêu đề cột và duy nhất 1 dòng dữ liệu của ứng viên.
+            </li>
+            <li>
+                <strong>Bước 4: Lưu dữ liệu đã phân tích vào file Excel đích</strong><br>
+                Chạy: <code>python scripts/write_to_excel.py --excel "<đường_dẫn_excel>" --headers "<các_cột_bước_1>" --data "<bảng_markdown_bước_3>"</code><br>
+                <em>Mục đích:</em> Ghi dữ liệu vào file Excel đích an toàn.
+            </li>
+        </ol>
+
+        <h2>Quy Tắc Định Dạng Điền Trường Dữ Liệu Chi Tiết:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tên Cột (Nếu Có)</th>
+                    <th>Quy Tắc Điền Thông Tin</th>
+                    <th>Ví dụ mẫu 1 (Ứng viên tiếng)</th>
+                    <th>Ví dụ mẫu 2 (Ứng viên kỹ thuật)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Loại ứng viên</strong></td>
+                    <td>Chỉ chọn trong các từ khóa: "Tiếng Nhật", "Phiên dịch tiếng Nhật", "Tiếng Anh", "Tiếng Trung", "Tiếng Hàn", "Anh Nhật", "Trung Nhật", "Người Nhật", "Người Hàn", "Trợ lý", "Giáo viên", "HCNS", "Kế toán", "Sales & CSKH", "Mua hàng", "Xuất nhập khẩu", "Logistics & Supply Chain", "Kho", "KHSX", "QLSX", "QA QC", "Thực phẩm", "HSE", "Môi trường, hóa chất", "Y tế", "IT", "Kỹ thuật", "Bảo trì", "Cơ khí", "CNC", "Đúc, Ép, khuôn", "Điện, điện tử, cơ điện tử", "Kỹ thuật điện - ME", "Thiết kế", "Tự động hóa", "SMT", "HVAC", "Xây dựng", "Bao bì, in ấn", "Quay dựng", "Marketing", "Luật", "Xuất khẩu lao động". Không tự ý thêm từ khác.</td>
+                    <td><code>Tiếng Nhật</code></td>
+                    <td><code>Kỹ thuật</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Họ Tên / Họ và tên</strong></td>
+                    <td>AI trích xuất đầy đủ họ và tên của ứng viên từ CV.</td>
+                    <td><code>Nguyễn Văn A</code></td>
+                    <td><code>Trần Minh B</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Tên / Tên ứng viên</strong></td>
+                    <td>AI không cần điền (để trống). Hệ thống Python sẽ tự động tách tên từ cột Họ Tên dựa trên ký tự khoảng trắng cuối cùng.</td>
+                    <td><code>(Python tự động điền: A)</code></td>
+                    <td><code>(Python tự động điền: B)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Giới tính</strong></td>
+                    <td>Chỉ ghi "Nam" hoặc "Nữ".</td>
+                    <td><code>Nữ</code></td>
+                    <td><code>Nam</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Năm Sinh</strong></td>
+                    <td>Chỉ để số năm gồm 4 chữ số.</td>
+                    <td><code>1997</code></td>
+                    <td><code>1993</code></td>
+                </tr>
+                <tr>
+                    <td><strong>SĐT</strong></td>
+                    <td>Bắt buộc thêm ký tự nháy đơn <code>'</code> ở đầu số điện thoại.</td>
+                    <td><code>'0912345678</code></td>
+                    <td><code>'0987654321</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Quê quán</strong></td>
+                    <td>Chỉ điền một trong các tỉnh/thành phố hợp lệ của Việt Nam.</td>
+                    <td><code>Hải Phòng</code></td>
+                    <td><code>Bắc Ninh</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Bằng cấp</strong></td>
+                    <td>Chỉ điền: THPT, Trung cấp, Cao đẳng, Đại học, hoặc Senmon.</td>
+                    <td><code>Đại học</code></td>
+                    <td><code>Cao đẳng</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Chứng chỉ tiếng</strong></td>
+                    <td>Viết đúng tên chứng chỉ chuẩn. Nếu tự đánh giá chưa có bằng chính thức thì thêm hậu tố "TD".</td>
+                    <td><code>N2</code></td>
+                    <td><code>N3TD</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Kinh nghiệm</strong></td>
+                    <td>Viết dạng công thức Excel nối chuỗi, sử dụng <code>CHAR(10)</code> để xuống dòng. Mỗi công ty bắt đầu 

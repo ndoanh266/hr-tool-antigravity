@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quy Tắc Tìm Kiếm và Tổng Hợp Thông Tin Khách Hàng</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="master_rules.html" class="nav-brand">Headhunter AI v1.6</a>
+            <div class="nav-menu">
+                <a href="master_rules.html" class="nav-link">Trang Chủ</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Trích Xuất ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_extract_cv.html">Trích xuất CV</a>
+                        <a href="rule_extract_jd.html">Trích xuất JD</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Chấm Điểm ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_score_cv.html">Chấm điểm CV</a>
+                        <a href="rule_score_jd.html">Chấm điểm JD</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Vận Hành ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_search_files.html">Tìm kiếm file</a>
+                        <a href="rule_summarize_client.html">Thông tin KH</a>
+                        <a href="rule_lookup_term.html">Tra thuật ngữ</a>
+                        <a href="rule_build_email.html">Viết Email</a>
+                        <a href="rule_suggest_script.html">Kịch bản chat</a>
+                        <a href="rule_create_ad.html">Tin tuyển dụng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <h1>Quy Tắc: Tìm Kiếm và Tổng Hợp Thông Tin Doanh Nghiệp KH</h1>
+        
+        <h2>Quy Trình Thực Hiện (Tối Ưu Chi Phí):</h2>
+        <ol>
+            <li>
+                <strong>Bước 1: Tra cứu thông tin từ Internet</strong><br>
+                Chạy: <code>python scripts/search_web.py --query "<tên_công_ty>"</code><br>
+                <em>Mục đích:</em> Tìm kiếm nhanh các kết quả liên quan từ DuckDuckGo để lấy thông tin hoạt động thực tế.
+            </li>
+            <li>
+                <strong>Bước 2: Sử dụng AI Agent (Bạn) tự tổng hợp hồ sơ</strong><br>
+                <em>Mục đích:</em> AI Agent tự nghiên cứu dữ liệu thô thu được từ web ở Bước 1 và sắp xếp thành hồ sơ doanh nghiệp có cấu trúc dưới đây mà không gọi qua API OpenRouter.<br>
+                <em>Mẫu Hồ Sơ Chuẩn:</em>
+                <ul>
+                    <li>Tên công ty</li>
+                    <li>Ngày thành lập</li>
+                    <li>Lĩnh vực hoạt động</li>
+                    <li>Cơ cấu tổ chức</li>
+                    <li>Địa chỉ</li>
+                    <li>Số điện thoại liên hệ</li>
+                    <li>Website</li>
+                    <li>Thông tin bổ sung khác</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>
