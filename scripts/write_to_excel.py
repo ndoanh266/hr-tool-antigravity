@@ -43,6 +43,16 @@ if __name__ == "__main__":
     parser.add_argument("--data", required=True)
     args = parser.parse_args()
     target_headers = [h.strip() for h in args.headers.split("|") if h.strip()]
-    data_dict, _ = parse_markdown_table(args.data)
+    
+    data_content = args.data
+    if len(data_content) < 260 and os.path.exists(data_content):
+        try:
+            with open(data_content, "r", encoding="utf-8") as f:
+                data_content = f.read()
+        except Exception:
+            pass
+
+    data_dict, _ = parse_markdown_table(data_content)
     append_to_excel(args.excel, target_headers, data_dict)
     print("SUCCESS")
+
