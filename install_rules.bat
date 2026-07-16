@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 set "TARGET_FILE=%USERPROFILE%\.gemini\GEMINI.md"
-set "RULE_PATH=E:/Workshop/2025/hr-tool-antigravity/INSTRUCTIONS_FOR_AI.md"
+set "RULE_PATH=C:/mkt/INSTRUCTIONS_FOR_AI.md"
 set "RULE_LINE=@%RULE_PATH%"
 
 echo Checking for global Gemini configuration in %TARGET_FILE%...
