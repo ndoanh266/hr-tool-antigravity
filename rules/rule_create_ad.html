@@ -49,18 +49,61 @@
         <ol>
             <li>
                 <strong>Bước 1: Viết nội dung bài viết tuyển dụng thô trực tiếp bằng AI Agent (Bạn)</strong><br>
-                Bạn tự thiết kế và soạn thảo bài đăng tuyển dụng đầy hấp dẫn dựa vào thông tin mô tả và mẫu phong cách người dùng đưa ra.
+                Bạn tự thiết kế và soạn thảo bài đăng tuyển dụng đầy hấp dẫn dựa vào thông tin mô tả vị trí và quy tắc cấu trúc bên dưới.
             </li>
             <li>
                 <strong>Bước 2: Lọc từ cấm (Từ khóa nhạy cảm / không đúng quy định tuyển dụng)</strong><br>
                 Chạy: <code>python scripts/filter_forbidden_words.py --text "<bài_viết_thô_bước_1>"</code><br>
-                <em>Mục đích:</em> Tự động kết nối API kiểm duyệt của v1.5 để phát hiện và thay thế các từ cấm hoặc cụm từ nhạy cảm theo quy định.
+                <em>Mục đích:</em> Tự động quét và thay thế các từ cấm hoặc cụm từ nhạy cảm (như giới hạn giới tính khi không được phép, mức lương gây hiểu lầm, từ ngữ phân biệt vùng miền, v.v.).
             </li>
             <li>
-                <strong>Bước 3: AI Agent (Bạn) trực tiếp gợi ý cách trang trí tin tuyển dụng trên Canva</strong><br>
-                <em>Mục đích:</em> Nhận nội dung đã lọc sạch ở Bước 2, bạn tự phân tích và đề xuất bố cục thiết kế, màu sắc chủ đạo, và icon trang trí trực quan trên Canva để người dùng tự vẽ ấn phẩm. Không dùng script API bên ngoài.
+                <strong>Bước 3: AI Agent (Bạn) trực tiếp gợi ý cách thiết kế ấn phẩm Canva</strong><br>
+                <em>Mục đích:</em> Nhận nội dung đã lọc sạch ở Bước 2, bạn tự phân tích và đề xuất bố cục thiết kế, bảng màu chủ đạo (Color Palette), phông chữ, hình minh họa phù hợp để người sử dụng tự tạo ấn phẩm thiết kế nhanh chóng.
             </li>
         </ol>
+
+        <h2>1. Quy Chuẩn Nội Dung Bài Đăng Tuyển Dụng:</h2>
+        <ul>
+            <li><strong>Tiêu đề (Headline):</strong> Thu hút, chứa tên vị trí + địa điểm/mức lương hấp dẫn (ví dụ: `[HÀ NỘI] TUYỂN DỤNG KỸ SƯ CƠ KHÍ - LƯƠNG LÊN ĐẾN 25M`).</li>
+            <li><strong>Giới thiệu ngắn:</strong> 1-2 câu về môi trường làm việc năng động, quy mô công ty đối tác.</li>
+            <li><strong>Nhiệm vụ chính (Key Responsibilities):</strong> 3-5 gạch đầu dòng ngắn gọn, rõ ràng, dễ hiểu.</li>
+            <li><strong>Yêu cầu cốt lõi (Key Requirements):</strong> Tập trung vào số năm kinh nghiệm, kỹ năng bắt buộc và chứng chỉ ngoại ngữ.</li>
+            <li><strong>Quyền lợi hấp dẫn (Benefits):</strong> Làm nổi bật mức lương, phụ cấp đặc biệt, bảo hiểm, xe đưa đón, lộ trình tăng lương.</li>
+            <li><strong>Thông tin liên hệ (Call to Action):</strong> Hướng dẫn ứng tuyển chi tiết (Email, Zalo, link form).</li>
+        </ul>
+
+        <h2>2. Hướng Dẫn Đề Xuất Thiết Kế Ấn Phẩm Canva:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Yếu Tố Thiết Kế</th>
+                    <th>Quy Chuẩn Đề Xuất Của AI</th>
+                    <th>Ví dụ cụ thể</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Kích thước (Dimensions)</strong></td>
+                    <td>Chọn tỉ lệ ảnh phù hợp nền tảng (Facebook/LinkedIn: 1200x628px hoặc 1080x1080px vuông).</td>
+                    <td><code>1080 x 1080 px (Hình vuông đăng Facebook Feed)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Bảng màu (Color Palette)</strong></td>
+                    <td>Đề xuất 3 màu chủ đạo phù hợp tính chất vị trí (Kỹ thuật: xanh dương/xám, Nhân sự/Sales: cam/xanh lá).</td>
+                    <td><code>#0F4C81 (Classic Blue) phối #F5A623 (Hổ phách) và #FFFFFF</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Phông chữ (Typography)</strong></td>
+                    <td>Đề xuất cặp phông chữ không chân (sans-serif) dễ đọc trên di động.</td>
+                    <td><code>Montserrat (Tiêu đề - Bold) kết hợp Roboto (Nội dung)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Bố cục & Hình ảnh</strong></td>
+                    <td>Cách bố trí tiêu đề, khung chứa thông tin lương, vị trí hình ảnh minh họa ứng viên hoặc nhà máy.</td>
+                    <td><code>Đặt ảnh chụp kỹ sư đang thao tác ở 1/3 bên phải, chữ căn lề trái ở 2/3 bên trái, làm nổi bật tag "LƯƠNG 20M" trong khung bo góc màu cam.</code></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

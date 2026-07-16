@@ -43,7 +43,7 @@
 
     <!-- Main Content Container -->
     <div class="container">
-        <h1>Quy Tắc: Chấm Điểm CV Theo Tiêu Chí</h1>
+        <h1>Quy Tắc: Chấm Điểm CV Ứng Viên So Với Yêu Cầu Tuyển Dụng</h1>
         
         <h2>Quy Trình Thực Hiện (Tối Ưu Chi Phí):</h2>
         <ol>
@@ -54,9 +54,66 @@
             </li>
             <li>
                 <strong>Bước 2: AI Agent (Bạn) trực tiếp chấm điểm CV</strong><br>
-                <em>Mục đích:</em> Bạn tự so sánh nội dung CV vừa đọc được với các tiêu chí do người dùng đưa ra, thực hiện đánh giá, cho điểm số chi tiết từng tiêu chí (dạng điểm/tổng điểm) và viết nhận xét. Không dùng script API bên ngoài.
+                <em>Mục đích:</em> Bạn tự so sánh nội dung CV vừa đọc được với các yêu cầu của JD mục tiêu, thực hiện đánh giá, cho điểm số chi tiết từng tiêu chí (dạng điểm/tổng điểm) và viết nhận xét chi tiết. Không dùng script API bên ngoài.
             </li>
         </ol>
+
+        <h2>Thang Điểm & Tiêu Chí Chấm Điểm CV (Tổng Điểm: 100):</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tiêu Chí Đánh Giá</th>
+                    <th>Trọng Số</th>
+                    <th>Hướng Dẫn Đánh Giá Chi Tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Học vấn & Chứng chỉ</strong></td>
+                    <td>20 điểm</td>
+                    <td>Độ phù hợp của chuyên ngành đào tạo, bằng cấp (Đại học, Cao đẳng...) và các chứng chỉ chuyên môn, ngoại ngữ (N1, N2, IELTS, TOEIC...) so với yêu cầu của JD.</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Kinh Nghiệm Làm Việc</strong></td>
+                    <td>35 điểm</td>
+                    <td>Kinh nghiệm thực tế có khớp với các nghiệp vụ chính trong JD không? Số năm làm việc trong lĩnh vực tương đương. Vai trò và dự án đã tham gia.</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Kỹ Năng Chuyên Môn</strong></td>
+                    <td>20 điểm</td>
+                    <td>Sử dụng thành thạo các công cụ chuyên ngành, ngôn ngữ lập trình, phần mềm thiết kế, hoặc kỹ năng nghiệp vụ đặc thù yêu cầu trong JD.</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Trình bày & Bố cục CV</strong></td>
+                    <td>15 điểm</td>
+                    <td>CV trình bày khoa học, chuyên nghiệp, thông tin liên hệ đầy đủ, không mắc lỗi chính tả, câu từ mạch lạc.</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Sự Ổn Định & Định Hướng</strong></td>
+                    <td>10 điểm</td>
+                    <td>Thời gian gắn bó tại các công ty cũ (tránh nhảy việc quá nhanh, dưới 1 năm liên tục), mục tiêu nghề nghiệp rõ ràng và phù hợp định hướng phát triển của vị trí mới.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Định Dạng Báo Cáo Chấm Điểm Đầu Ra (Markdown):</h2>
+        <pre><code>### KẾT QUẢ ĐÁNH GIÁ & CHẤM ĐIỂM CV: [Họ Tên Ứng Viên]
+* **Vị Trí Ứng Tuyển:** [Tên Vị Trí]
+* **Tổng Điểm Phù Hợp:** [X]/100 điểm - Xếp loại: [Rất Phù Hợp (>=85) / Phù Hợp (70-84) / Trung bình (50-69) / Không phù hợp (<50)]
+
+| Tiêu Chí Đánh Giá | Điểm Số | Nhận Xét & Phân Tích Chi Tiết |
+| :--- | :--- | :--- |
+| 1. Học vấn & Chứng chỉ | [x]/20 | [Nhận xét về bằng cấp, chứng chỉ ngoại ngữ...] |
+| 2. Kinh Nghiệm Làm Việc | [x]/35 | [Nhận xét mức độ khớp của kinh nghiệm thực tế...] |
+| 3. Kỹ Năng Chuyên Môn | [x]/20 | [Nhận xét về kỹ năng cứng/mềm...] |
+| 4. Trình bày & Bố cục CV | [x]/15 | [Nhận xét về lỗi chính tả, định dạng, độ chuyên nghiệp...] |
+| 5. Sự Ổn Định & Định Hướng | [x]/10 | [Nhận xét về thời gian làm việc cũ, tần suất nhảy việc...] |
+
+### ĐÁNH GIÁ CHUNG & PHỎNG VẤN SƠ BỘ:
+* **Ưu điểm lớn nhất:** [Các điểm sáng nổi bật nhất của ứng viên...]
+* **Điểm cần làm rõ khi phỏng vấn:** [Các câu hỏi/nghi vấn cần xác minh thêm...]
+* **Kết luận:** [Đề xuất Tiến hành phỏng vấn / Lưu kho hồ sơ / Từ chối]
+</code></pre>
     </div>
 </body>
 </html>

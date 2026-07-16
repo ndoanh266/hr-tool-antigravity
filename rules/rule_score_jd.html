@@ -43,7 +43,7 @@
 
     <!-- Main Content Container -->
     <div class="container">
-        <h1>Quy Tắc: Chấm Điểm JD Theo Tiêu Chí Đánh Giá</h1>
+        <h1>Quy Tắc: Chấm Điểm JD Tuyển Dụng Theo Tiêu Chí Chuẩn Hóa</h1>
         
         <h2>Quy Trình Thực Hiện (Tối Ưu Chi Phí):</h2>
         <ol>
@@ -54,9 +54,65 @@
             </li>
             <li>
                 <strong>Bước 2: AI Agent (Bạn) trực tiếp chấm điểm JD</strong><br>
-                <em>Mục đích:</em> Bạn tự so sánh nội dung JD vừa đọc được với các tiêu chí do người dùng đưa ra, thực hiện đánh giá, cho điểm số chi tiết từng tiêu chí (dạng điểm/tổng điểm) và viết nhận xét khách quan. Không cần gọi qua script API.
+                <em>Mục đích:</em> Bạn tự so sánh nội dung JD vừa đọc được với thang điểm chi tiết bên dưới, thực hiện đánh giá, cho điểm số chi tiết từng tiêu chí (dạng điểm/tổng điểm) và viết nhận xét khách quan. Không dùng script API bên ngoài.
             </li>
         </ol>
+
+        <h2>Thang Điểm & Tiêu Chí Chấm Điểm JD (Tổng Điểm: 100):</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tiêu Chí Đánh Giá</th>
+                    <th>Trọng Số</th>
+                    <th>Hướng Dẫn Đánh Giá Chi Tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Thông tin Vị trí & Công ty</strong></td>
+                    <td>15 điểm</td>
+                    <td>Có tên công ty, lĩnh vực kinh doanh, quy mô, địa chỉ làm việc rõ ràng. Tiêu đề công việc chuẩn hóa, dễ hiểu, không gây mơ hồ.</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Mô Tả Công Việc (Job Description)</strong></td>
+                    <td>25 điểm</td>
+                    <td>Chi tiết các đầu việc hàng ngày (5-8 nhiệm vụ cụ thể). Sử dụng động từ hành động mạnh mẽ (như thiết kế, lập kế hoạch, giám sát). Phân định rõ trách nhiệm của vị trí.</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Yêu Cầu Công Việc (Job Requirements)</strong></td>
+                    <td>25 điểm</td>
+                    <td>Xác định rõ ràng: trình độ học vấn tối thiểu, số năm kinh nghiệm chuyên môn, kỹ năng chuyên môn cần thiết, năng lực ngoại ngữ/chứng chỉ, và các kỹ năng mềm bổ trợ.</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Quyền Lợi & Đãi Ngộ (Benefits)</strong></td>
+                    <td>20 điểm</td>
+                    <td>Khoảng lương minh bạch hoặc nêu rõ cơ chế thỏa thuận. Các phụ cấp khác (BHXH, du lịch, thưởng hiệu quả công việc, phụ cấp ăn trưa, xe đưa đón). Cơ hội thăng tiến và môi trường làm việc.</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Thông Tin Liên Hệ & Quy Trình</strong></td>
+                    <td>15 điểm</td>
+                    <td>Hạn nộp hồ sơ, cách thức nộp CV, thông tin liên hệ tuyển dụng, quy trình phỏng vấn dự kiến (nếu có).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Định Dạng Báo Cáo Chấm Điểm Đầu Ra (Markdown):</h2>
+        <pre><code>### KẾT QUẢ ĐÁNH GIÁ & CHẤM ĐIỂM JD: [Tên Vị Trí] - [Tên Công Ty]
+
+* **Tổng Điểm:** [X]/100 điểm - Xếp loại: [Xuất sắc (>=90) / Tốt (80-89) / Trung bình (70-79) / Cần cải thiện (<70)]
+
+| Tiêu Chí Đánh Giá | Điểm Số | Nhận Xét & Phân Tích Chi Tiết |
+| :--- | :--- | :--- |
+| 1. Thông tin Vị trí & Công ty | [x]/15 | [Nhận xét chi tiết...] |
+| 2. Mô Tả Công Việc | [x]/25 | [Nhận xét chi tiết...] |
+| 3. Yêu Cầu Công Việc | [x]/25 | [Nhận xét chi tiết...] |
+| 4. Quyền Lợi & Đãi Ngộ | [x]/20 | [Nhận xét chi tiết...] |
+| 5. Thông Tin Liên Hệ & Quy Trình | [x]/15 | [Nhận xét chi tiết...] |
+
+### ĐỀ XUẤT CẢI THIỆN JD:
+1. [Khuyến nghị 1 để tăng điểm JD...]
+2. [Khuyến nghị 2...]
+</code></pre>
     </div>
 </body>
 </html>

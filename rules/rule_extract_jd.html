@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quy Tắc Trích Xuất Thông Tin JD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="master_rules.html" class="nav-brand">Headhunter AI v1.6</a>
+            <div class="nav-menu">
+                <a href="master_rules.html" class="nav-link">Trang Chủ</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Trích Xuất ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_extract_cv.html">Trích xuất CV</a>
+                        <a href="rule_extract_jd.html">Trích xuất JD</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Chấm Điểm ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_score_cv.html">Chấm điểm CV</a>
+                        <a href="rule_score_jd.html">Chấm điểm JD</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Vận Hành ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_search_files.html">Tìm kiếm file</a>
+                        <a href="rule_summarize_client.html">Thông tin KH</a>
+                        <a href="rule_lookup_term.html">Tra thuật ngữ</a>
+                        <a href="rule_build_email.html">Viết Email</a>
+                        <a href="rule_suggest_script.html">Kịch bản chat</a>
+                        <a href="rule_create_ad.html">Tin tuyển dụng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <h1>Quy Tắc: Trích Xuất Thông Tin Tuyển Dụng Từ JD Vào Excel/CSV</h1>
+        
+        <h2>Quy Trình Thực Hiện (Tối Ưu Chi Phí):</h2>
+        <ol>
+            <li>
+                <strong>Bước 1: Lấy các cột tiêu đề từ file Excel quản lý JD</strong><br>
+                Chạy: <code>python scripts/get_excel_fields.py --excel "<đường_dẫn_excel>"</code><br>
+                <em>Mục đích:</em> Khớp đúng cấu trúc bảng dữ liệu hiện tại để chèn dữ liệu không bị lệch.
+            </li>
+            <li>
+                <strong>Bước 2: Đọc nội dung văn bản của file JD</strong><br>
+                Chạy: <code>python scripts/extract_text.py --input "<đường_dẫn_jd>"</code><br>
+                <em>Mục đích:</em> Đọc văn bản thô từ file mô tả công việc (DOCX, PDF, hoặc TXT).
+            </li>
+            <li>
+                <strong>Bước 3: AI Agent tự phân tích và chuẩn hóa dữ liệu JD</strong><br>
+                <em>Mục đích:</em> Phân tích trực tiếp nội dung JD thô, dịch thuật các thuật ngữ kỹ thuật/tiếng Nhật/tiếng Anh sang tiếng Việt nếu cần, chuẩn hóa theo bảng quy tắc bên dưới. Không dùng API ngoài.<br>
+                <em>Đầu ra:</em> Một bảng Markdown gồm dòng tiêu đề và 1 dòng dữ liệu chi tiết của JD.
+            </li>
+            <li>
+                <strong>Bước 4: Lưu thông tin JD vào cơ sở dữ liệu Excel</strong><br>
+                Chạy: <code>python scripts/write_to_excel.py --excel "<đường_dẫn_excel>" --headers "<các_cột_bước_1>" --data "<bảng_markdown_bước_3>"</code>
+            </li>
+        </ol>
+
+        <h2>Quy Tắc Định Dạng Điền Trường Dữ Liệu Chi Tiết:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tên Cột (Nếu Có)</th>
+                    <th>Quy Tắc Điền Thông Tin</th>
+                    <th>Ví dụ mẫu 1 (Kỹ sư Cơ khí)</th>
+                    <th>Ví dụ mẫu 2 (Phiên dịch viên)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tên Công Ty / Khách Hàng</strong></td>
+                    <td>Trích xuất tên công ty tuyển dụng. Nếu không có tên cụ thể, ghi "Ẩn danh".</td>
+                    <td><code>Công ty TNHH Muto Hà Nội</code></td>
+                    <td><code>Tập đoàn Nidec Việt Nam</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Vị Trí Tuyển Dụng</strong></td>
+                    <td>Tên vị trí công việc cần tuyển dụng. Viết hoa các chữ cái đầu.</td>
+                    <td><code>Kỹ Sư Thiết Kế Cơ Khí</code></td>
+                    <td><code>Phiên Dịch Viên Tiếng Nhật Bán Hàng</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Số Lượng Tuyển</strong></td>
+                    <td>Chỉ điền số nguyên. Nếu không ghi rõ số lượng, mặc định điền <code>1</code>.</td>
+                    <td><code>2</code></td>
+                    <td><code>1</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Mức Lương</strong></td>
+                    <td>Ghi khoảng lương rõ ràng (đơn vị Triệu VNĐ hoặc USD). Nếu thỏa thuận ghi "Thỏa thuận".</td>
+                    <td><code>15 - 20 Triệu VNĐ</code></td>
+                    <td><code>1000 - 1500 USD</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Địa Điểm Làm Việc</strong></td>
+                    <td>Chỉ điền Tỉnh/Thành phố hoặc Khu công nghiệp cụ thể nơi làm việc.</td>
+                    <td><code>KCN Thăng Long, Đông Anh, Hà Nội</code></td>
+                    <td><code>Quận 9, TP. Hồ Chí Minh</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Yêu Cầu Ngoại Ngữ</strong></td>
+                    <td>Điền chuẩn chứng chỉ ngoại ngữ tối thiểu yêu cầu (ví dụ: N1, N2, N3, TOEIC 700, IELTS 6.5, Không yêu cầu).</td>
+                    <td><code>Không yêu cầu</code></td>
+                    <td><code>N2 trở lên (giao tiếp trôi chảy)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Yêu Cầu Kinh Nghiệm</strong></td>
+                    <td>Tóm tắt ngắn gọn số năm kinh nghiệm và chuyên môn bắt buộc. Sử dụng <code>CHAR(10)</code> để xuống dòng nếu điền vào công thức Excel.</td>
+                    <td><code>Tối thiểu 2 năm thiết kế chi tiết cơ khí. CHAR(10) Sử dụng thành thạo AutoCAD và SolidWorks.</code></td>
+                    <td><code>Tối thiểu 1 năm phiên dịch cabin hoặc biên dịch sản xuất.</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Quyền Lợi / Chế Độ</strong></td>
+                    <td>Liệt kê các chế độ đãi ngộ chính (BHXH, xe đưa đón, thưởng năm, du lịch...). Sử dụng <code>CHAR(10)</code> để xuống dòng.</td>
+                    <td><code>Đóng BHXH theo luật lao động. CHAR(10) Có xe đưa đón từ nội thành Hà Nội. CHAR(10) Thưởng lương tháng 13.</code></td>
+                    <td><code>Hỗ trợ ăn trưa tại nhà máy. CHAR(10) Gói bảo hiểm sức khỏe PVI. CHAR(10) Xét tăng lương 2 lần/năm.</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
