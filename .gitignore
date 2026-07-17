@@ -8,3 +8,7 @@ env/
 .idea/
 .vscode/
 .DS_Store
+
+# Credentials and Local Configurations
+*.json
+config.env
