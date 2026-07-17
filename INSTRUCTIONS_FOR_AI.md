@@ -16,8 +16,10 @@ Mở file luật HTML chi tiết tương ứng (ví dụ: `rules/rule_extract_cv
 #### 1. Trích xuất thông tin CV (rule_extract_cv.html)
 - **Hệ thống:** Chạy `python scripts/get_excel_fields.py --excel "<excel_path>"` để lấy danh sách tiêu đề cột.
 - **Hệ thống:** Chạy `python scripts/extract_text.py --input "<cv_path>"` để lấy nội dung CV.
-- **Tư duy của bạn (AI):** Tự dịch CV (nếu có ngoại ngữ) và tự phân tích, trích xuất thông tin ứng viên khớp chính xác với tiêu đề cột thu được ở bước trên, tuân thủ đúng quy tắc định dạng của `rule_extract_cv.html`. Trả kết quả dưới dạng bảng Markdown (gồm tiêu đề cột và 1 dòng dữ liệu).
+- **Hệ thống:** Nếu Excel có cột chứa liên kết/link (như `Link CV`), chạy `python scripts/get_drive_links.py --filename "<tên_file_cv_không_kèm_đường_dẫn>"` để lấy link Google Drive.
+- **Tư duy của bạn (AI):** Tự dịch CV (nếu có ngoại ngữ), tự phân tích và điền thông tin (bao gồm cả link Drive vừa lấy nếu có cột tương ứng) khớp chính xác với tiêu đề cột thu được ở bước trên, tuân thủ đúng quy tắc định dạng của `rule_extract_cv.html`. Trả kết quả dưới dạng bảng Markdown (gồm tiêu đề cột và 1 dòng dữ liệu).
 - **Hệ thống:** Chạy `python scripts/write_to_excel.py --excel "<excel_path>" --headers "<các_cột>" --data "<bảng_markdown_của_bạn>"` để ghi vào Excel.
+
 
 #### 2. Trích xuất thông tin JD (rule_extract_jd.html)
 - **Hệ thống:** Chạy `python scripts/get_excel_fields.py --excel "<excel_path>"` để lấy tiêu đề cột.

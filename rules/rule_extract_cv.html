@@ -58,13 +58,18 @@
                 <em>Mục đích:</em> Đọc nội dung thô từ file PDF, DOCX, DOC hoặc XLSX/CSV.
             </li>
             <li>
-                <strong>Bước 3: Dịch thuật và phân tích thông tin CV trực tiếp bằng trí tuệ của AI Agent (Bạn)</strong><br>
-                <em>Mục đích:</em> AI Agent tự động dịch CV sang tiếng Việt và trích xuất thông tin khớp chính xác với tiêu đề cột thu được ở Bước 1 và các quy tắc định dạng bên dưới. Không sử dụng script API bên ngoài để tiết kiệm chi phí.<br>
+                <strong>Bước 3: Lấy liên kết Google Drive của file CV (Nếu cần)</strong><br>
+                Chạy: <code>python scripts/get_drive_links.py --filename "<tên_file_cv_không_kèm_đường_dẫn>"</code><br>
+                <em>Mục đích:</em> Lấy link Google Drive nếu file Excel có các cột liên quan như <code>Link CV</code>.
+            </li>
+            <li>
+                <strong>Bước 4: Dịch thuật, phân tích thông tin và kết hợp link CV trực tiếp bằng trí tuệ của AI Agent (Bạn)</strong><br>
+                <em>Mục đích:</em> AI Agent tự động dịch CV sang tiếng Việt, phân tích, trích xuất thông tin ứng viên và chèn link CV thu được ở Bước 3 khớp chính xác với tiêu đề cột thu được ở Bước 1. Không sử dụng script API bên ngoài để tiết kiệm chi phí.<br>
                 <em>Đầu ra:</em> Một bảng Markdown gồm dòng tiêu đề cột và duy nhất 1 dòng dữ liệu của ứng viên.
             </li>
             <li>
-                <strong>Bước 4: Lưu dữ liệu đã phân tích vào file Excel đích</strong><br>
-                Chạy: <code>python scripts/write_to_excel.py --excel "<đường_dẫn_excel>" --headers "<các_cột_bước_1>" --data "<bảng_markdown_bước_3>"</code><br>
+                <strong>Bước 5: Lưu dữ liệu đã phân tích vào file Excel đích</strong><br>
+                Chạy: <code>python scripts/write_to_excel.py --excel "<đường_dẫn_excel>" --headers "<các_cột_bước_1>" --data "<bảng_markdown_bước_4>"</code><br>
                 <em>Mục đích:</em> Ghi dữ liệu vào file Excel đích an toàn.
             </li>
         </ol>
