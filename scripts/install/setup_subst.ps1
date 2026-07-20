@@ -1,4 +1,4 @@
-﻿param (
+param (
     [string]$CvDir,
     [string]$RepoDir,
     [string]$DriveLabel = "Google Shared with me",
@@ -26,6 +26,13 @@ if ($CvDir -eq 'CANCEL' -or $CvDir -eq 'SKIP' -or [string]::IsNullOrEmpty($CvDir
 $FinalCvDir = $CvDir
 
 if ($ShouldSubst) {
+    # Clean up and normalize path (remove trailing slashes unless root drive like C:\)
+    $cleanCvDir = $CvDir.Trim().TrimEnd('\').TrimEnd('/')
+    if ($cleanCvDir -match '^[a-zA-Z]:$') {
+        $cleanCvDir = "$cleanCvDir\"
+    }
+    $CvDir = $cleanCvDir
+
     # Find a free drive letter (scanning backwards from Z to F)
     $letters = @('Z', 'Y', 'X', 'W', 'V', 'U', 'T', 'S', 'R', 'Q', 'P', 'O', 'N', 'M', 'L', 'K', 'J', 'I', 'H', 'G', 'F')
     $driveLetter = $null

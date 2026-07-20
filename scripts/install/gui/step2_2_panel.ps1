@@ -1,4 +1,4 @@
-﻿param($form, $globalState)
+param($form, $globalState)
 
 $panel = New-Object System.Windows.Forms.Panel
 $panel.Size = New-Object System.Drawing.Size(520, 440)
@@ -81,7 +81,7 @@ $panel.Controls.Add($p2_2TxtName)
 
 # Auto-update virtual drive label on path change
 $p2_2Txt.add_TextChanged({
-    $path = $p2_2Txt.Text.Trim()
+    $path = $p2_2Txt.Text.Trim().TrimEnd('\').TrimEnd('/')
     if ($path) {
         try {
             $folderName = Split-Path -Leaf $path
