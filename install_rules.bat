@@ -105,7 +105,7 @@ if %errorlevel% neq 0 (
     exit /b 0
 )
 
-:: 5. Check and retrieve installer files if missing
+:: 5. Check and retrieve / update installer files from GitHub
 set "CURRENT_DIR=%~dp0"
 set "CURRENT_DIR=%CURRENT_DIR:~0,-1%"
 
@@ -118,67 +118,63 @@ if exist "%CURRENT_DIR%\hr-tool-antigravity" (
     set "REPO_DIR=%CURRENT_DIR%"
 )
 
-if not exist "!REPO_DIR!\scripts\install\install_rules.ps1" (
-    echo ========================================================
-    echo  [HE THONG] TAI GOI CAI DAT: HR TOOL ANTIGRAVITY
-    echo ========================================================
-    echo Phat hien thieu cac file script cai dat trong thu muc:
-    echo   !REPO_DIR!\scripts\install
-    echo.
-    echo Dang tien hanh tai tu dong ma nguon tu GitHub...
-    echo.
+echo ========================================================
+echo  [HE THONG] KIEM TRA & CAP NHAT HR TOOL ANTIGRAVITY
+echo ========================================================
+echo Dang kiem tra va cap nhat phien ban moi nhat tu GitHub...
+echo.
 
-    where git >nul 2>nul
-    if !errorlevel! equ 0 (
-        echo [*] Dang su dung Git de clone va dong bo ma nguon...
-        if exist "%CURRENT_DIR%\.git" (
-            git fetch origin
-            git checkout -f main
-        ) else if exist "%CURRENT_DIR%\hr-tool-antigravity\.git" (
-            cd /d "%CURRENT_DIR%\hr-tool-antigravity"
-            git fetch origin
-            git checkout -f main
-        ) else (
-            :: Check if current directory name is 'hr-tool-antigravity'
-            for %%I in ("%CURRENT_DIR%") do set "DIR_NAME=%%~nxI"
-            if "!DIR_NAME!"=="hr-tool-antigravity" (
-                git init
-                git remote add origin https://github.com/ndoanh266/hr-tool-antigravity.git
-                git fetch
-                git checkout -f main
-            ) else (
-                git clone https://github.com/ndoanh266/hr-tool-antigravity.git "%CURRENT_DIR%\hr-tool-antigravity"
-                set "REPO_DIR=%CURRENT_DIR%\hr-tool-antigravity"
-            )
-        )
+where git >nul 2>nul
+if %errorlevel% equ 0 (
+    if exist "!REPO_DIR!\.git" (
+        echo [*] Dang cap nhat ma nguon qua Git...
+        pushd "!REPO_DIR!"
+        git fetch origin main >nul 2>&1
+        git pull origin main
+        popd
+    ) else if exist "%CURRENT_DIR%\.git" (
+        echo [*] Dang cap nhat ma nguon qua Git...
+        pushd "%CURRENT_DIR%"
+        git fetch origin main >nul 2>&1
+        git pull origin main
+        popd
     ) else (
-        echo [*] Khong tim thay Git. Dang tai ma nguon dang ZIP...
-        call :download "https://github.com/ndoanh266/hr-tool-antigravity/archive/refs/heads/main.zip" "%TEMP%\hr-tool.zip"
-        if exist "%TEMP%\hr-tool.zip" (
-            echo [*] Dang giai nen bo cai dat...
-            powershell -Command "if (Test-Path '%TEMP%\hr-tool-extracted') { Remove-Item -Path '%TEMP%\hr-tool-extracted' -Recurse -Force } New-Item -ItemType Directory -Path '%TEMP%\hr-tool-extracted' -Force | Out-Null; Expand-Archive -Path '%TEMP%\hr-tool.zip' -DestinationPath '%TEMP%\hr-tool-extracted' -Force"
-            
-            for %%I in ("%CURRENT_DIR%") do set "DIR_NAME=%%~nxI"
-            if "!DIR_NAME!"=="hr-tool-antigravity" (
-                echo [*] Dang copy tep vao thu muc hien tai...
-                xcopy /E /Y /I "%TEMP%\hr-tool-extracted\hr-tool-antigravity-main\*" "%CURRENT_DIR%\" >nul
-            ) else (
-                echo [*] Dang tao va copy tep vao thu muc hr-tool-antigravity...
-                xcopy /E /Y /I "%TEMP%\hr-tool-extracted\hr-tool-antigravity-main\*" "%CURRENT_DIR%\hr-tool-antigravity\" >nul
-                set "REPO_DIR=%CURRENT_DIR%\hr-tool-antigravity"
-            )
-            
-            del /q "%TEMP%\hr-tool.zip"
-            rmdir /s /q "%TEMP%\hr-tool-extracted"
+        for %%I in ("%CURRENT_DIR%") do set "DIR_NAME=%%~nxI"
+        if "!DIR_NAME!"=="hr-tool-antigravity" (
+            git init
+            git remote add origin https://github.com/ndoanh266/hr-tool-antigravity.git
+            git fetch origin
+            git checkout -f main
         ) else (
-            echo [LOI] Khong the tai xuong ma nguon tu GitHub. Vui long kiem tra ket noi internet.
-            pause
-            exit /b 1
+            git clone https://github.com/ndoanh266/hr-tool-antigravity.git "%CURRENT_DIR%\hr-tool-antigravity"
+            set "REPO_DIR=%CURRENT_DIR%\hr-tool-antigravity"
         )
     )
-    echo [OK] Tai va dong bo ma nguon thanh cong!
-    echo.
+) else (
+    echo [*] Dang tai ma nguon dang ZIP tu GitHub...
+    call :download "https://github.com/ndoanh266/hr-tool-antigravity/archive/refs/heads/main.zip" "%TEMP%\hr-tool.zip"
+    if exist "%TEMP%\hr-tool.zip" (
+        echo [*] Dang giai nen bo cai dat...
+        powershell -Command "if (Test-Path '%TEMP%\hr-tool-extracted') { Remove-Item -Path '%TEMP%\hr-tool-extracted' -Recurse -Force } New-Item -ItemType Directory -Path '%TEMP%\hr-tool-extracted' -Force | Out-Null; Expand-Archive -Path '%TEMP%\hr-tool.zip' -DestinationPath '%TEMP%\hr-tool-extracted' -Force"
+        
+        for %%I in ("%CURRENT_DIR%") do set "DIR_NAME=%%~nxI"
+        if "!DIR_NAME!"=="hr-tool-antigravity" (
+            echo [*] Dang copy tep vao thu muc hien tai...
+            xcopy /E /Y /I "%TEMP%\hr-tool-extracted\hr-tool-antigravity-main\*" "%CURRENT_DIR%\" >nul
+        ) else (
+            echo [*] Dang tao va copy tep vao thu muc hr-tool-antigravity...
+            xcopy /E /Y /I "%TEMP%\hr-tool-extracted\hr-tool-antigravity-main\*" "%CURRENT_DIR%\hr-tool-antigravity\" >nul
+            set "REPO_DIR=%CURRENT_DIR%\hr-tool-antigravity"
+        )
+        
+        del /q "%TEMP%\hr-tool.zip"
+        rmdir /s /q "%TEMP%\hr-tool-extracted"
+    ) else (
+        echo [CANH BAO] Khong thể tai xuong ma nguon tu GitHub. Se su dung phien ban hien co...
+    )
 )
+echo [OK] Dong bo phien ban thanh cong!
+echo.
 
 powershell -NoProfile -ExecutionPolicy Bypass -File "!REPO_DIR!\scripts\install\install_rules.ps1"
 exit /b 0
