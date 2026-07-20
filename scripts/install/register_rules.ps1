@@ -1,4 +1,4 @@
-﻿param (
+param (
     [string]$RepoDir
 )
 
@@ -12,7 +12,7 @@ function Write-Log {
 Write-Log "Bat dau register_rules.ps1. RepoDir=$RepoDir"
 
 $targetFile = "$env:USERPROFILE\.gemini\GEMINI.md"
-$rulePath = $RepoDir.Replace('\', '/') + "/INSTRUCTIONS_FOR_AI.md"
+$rulePath = $RepoDir.Replace([char]92, '/') + "/INSTRUCTIONS_FOR_AI.md"
 $ruleLine = "@$rulePath"
 
 Write-Host "Dang dang ky luat trong cau hinh Gemini toan cuc ($targetFile)..."
@@ -31,10 +31,13 @@ $content = Get-Content -Path $targetFile -Raw
 if ($content -match [regex]::Escape($ruleLine)) {
     Write-Log "[INFO] Luat da duoc dang ky truoc do trong GEMINI.md."
     Write-Host "[INFO] Luat da duoc dang ky truoc do trong GEMINI.md."
-} else {
+}
+else {
     Add-Content -Path $targetFile -Value ""
     Add-Content -Path $targetFile -Value "# HR Tool Antigravity Rules"
-    Add-Content -Path $targetFile -Value $ruleLine
+    Add-Content -Path $targetFile -Value "@$rulePath"
+    Add-Content -Path $targetFile -Value ""
+    Add-Content -Path $targetFile -Value "**Rule:** For any user request that directly involves HR functionality (e.g., CV extraction, JD processing, candidate scoring, email drafting, ad creation, etc.), Antigravity must first load and consult ``$rulePath`` before performing any reasoning or system actions. This ensures consistent adherence to the defined multi-step workflow and prevents bypassing the central instruction set."
     Write-Log "[SUCCESS] Dang ky luat thanh cong vao GEMINI.md: $ruleLine"
     Write-Host "[SUCCESS] Dang ky luat thanh cong vao GEMINI.md."
 }

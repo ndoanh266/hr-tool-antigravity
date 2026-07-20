@@ -1,4 +1,4 @@
-# install_rules.ps1 - Unified Installer Orchestrator
+﻿# install_rules.ps1 - Unified Installer Orchestrator
 $repoUrl = "https://github.com/ndoanh266/hr-tool-antigravity.git"
 $tempPathFile = "$env:TEMP\hr_tool_setup_paths.txt"
 $logFile = "C:\mkt\installer_debug.log"
@@ -45,6 +45,7 @@ $parts = $content.Split('|')
 $repoDir = $parts[0].Trim()
 $cvDir = $parts[1].Trim()
 $driveLabel = if ($parts.Length -ge 3) { $parts[2].Trim() } else { "Google Shared with me" }
+$driveIcon = if ($parts.Length -ge 4) { $parts[3].Trim() } else { "default" }
 
 if ($repoDir -eq "CANCEL") {
     Write-Log "[INFO] Nguoi dung da huy setup."
@@ -74,7 +75,7 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
 Write-Log "[INFO] Dang cau hinh o dia ao..."
 $setupSubstScript = "$repoDir\scripts\install\setup_subst.ps1"
 if (Test-Path $setupSubstScript) {
-    & $setupSubstScript -CvDir $cvDir -RepoDir $repoDir -DriveLabel $driveLabel
+    & $setupSubstScript -CvDir $cvDir -RepoDir $repoDir -DriveLabel $driveLabel -DriveIcon $driveIcon
 } else {
     Write-Log "[ERROR] Khong tim thay script setup_subst.ps1"
 }

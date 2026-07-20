@@ -1,65 +1,46 @@
-# HR Tool Antigravity (v1.6) - Headhunter AI Agent
+# HR Tool Antigravity – Công cụ hỗ trợ tuyển dụng
 
-Dự án tối ưu hóa quy trình Headhunter sử dụng AI Agent (Antigravity) với kiến trúc phi tập trung, hướng tri thức (Knowledge-driven), giúp tối đa hóa khả năng suy luận trực tiếp của AI và giảm thiểu tối đa chi phí sử dụng API ngoài.
+## 🎯 Mục tiêu
+Giúp bộ phận nhân sự nhanh chóng truy cập, quản lý và sử dụng các hồ sơ CV, tài liệu tuyển dụng trên Google Drive mà không cần thao tác phức tạp.
 
----
+## 📦 Các chức năng chính
+- **Trích xuất CV** – Đọc file PDF/Word/Excel của ứng viên, tự động lấy thông tin cá nhân, kỹ năng, kinh nghiệm và ghi vào Excel/CSV.
+- **Trích xuất JD** – Phân tích mô tả công việc, trích xuất yêu cầu và lưu thành dữ liệu có cấu trúc.
+- **Tìm kiếm file** – Quét đệ quy thư mục (Google Drive hoặc ổ cục bộ) để tìm nhanh file chứa từ khóa.
+- **Tìm kiếm & tổng hợp khách hàng** – Dùng DuckDuckGo thu thập thông tin doanh nghiệp, tổng hợp báo cáo ngắn gọn.
+- **Tra cứu thuật ngữ** – Giải nghĩa nhanh các từ ngữ, khái niệm HR, công nghệ, kinh tế.
+- **Chấm điểm CV** – Đánh giá mức độ phù hợp của hồ sơ với tiêu chí tuyển dụng, đưa ra điểm số chuẩn hoá.
+- **Chấm điểm JD** – Đánh giá cấu trúc và nội dung JD dựa trên tiêu chuẩn công ty.
+- **Xây dựng email tiếp cận** – Tự động tạo mẫu email mời phỏng vấn, bán hàng hoặc theo dõi, cá nhân hoá nội dung.
+- **Gợi ý kịch bản hội thoại** – Đề xuất các đoạn hội thoại, phản hồi tiếp theo cho nhân viên tuyển dụng.
+- **Tạo bài đăng tuyển dụng & thiết kế Canva** – Viết nội dung bài đăng, lọc từ cấm và gợi ý mẫu Canva.
+- **Kết hợp Google Drive App (Windows)** – Tạo ổ ảo (`subst`) trỏ tới thư mục CV trên Google Drive, gán nhãn và biểu tượng để người HR nhận diện ngay trong Explorer.
+- **Tự động hoá qua Antigravity** – Khi Antigravity được cấu hình, các quy tắc trong `INSTRUCTIONS_FOR_AI.md` sẽ gọi các script PowerShell/Python để thực hiện các chức năng trên mà không cần thao tác thủ công.
 
-## 🌟 Kiến Trúc Hoạt Động (3 Bước)
+## 💻 Hướng dẫn cài đặt
+1. **Kiểm tra môi trường**
+   - **PowerShell 3.0+** – Cần để chạy các script PowerShell (`install_rules.bat`, `setup_subst.ps1`). Các lệnh như `subst`, `New-Item`, `SHChangeNotify` chỉ hoạt động trên PowerShell hiện đại.
+   - **Git** – Dùng để sao chép, cập nhật source code từ GitHub và để quản lý phiên bản. Nếu máy chưa có, script sẽ tự động tải và cài đặt.
+   - **Python 3.x** – Các script xử lý dữ liệu (extract, write_to_excel, search_web…) được viết bằng Python. Cài Python cho phép chạy các công cụ này và cài các thư viện phụ thuộc (`openpyxl`, `pandas`, …).
 
-Khi được cấu hình thành công, AI Agent (Antigravity) sẽ tuân thủ nghiêm ngặt quy trình 3 bước sau:
+2. **Cài đặt nhanh**
+   - Mở thư mục dự án và chạy file **`install_rules.bat`** bằng cách double‑click.
+   - Nếu thiếu **Git** hoặc **Python**, script sẽ:
+     - Yêu cầu quyền **Administrator**, tải bộ cài từ Microsoft / Python.org, cài đặt ở chế độ **silent**.
+     - Thêm đường dẫn cài đặt vào biến môi trường `PATH` để các lệnh có thể được gọi ngay.
+   - Khi cài đặt hoàn tất, script sẽ tạo một **ổ ảo** (ví dụ `S:`) trỏ tới thư mục CV trên Google Drive và gán nhãn, biểu tượng theo cấu hình.
 
-1. **Bước 1 (Đọc Luật Tổng Quát):** Đọc file `rules/master_rules.html` để xác định yêu cầu công việc hiện tại của bạn thuộc nhóm quy tắc nào.
-2. **Bước 2 (Đọc Luật Chi Tiết):** Truy cập vào file HTML tương ứng trong thư mục `rules/` (ví dụ: `rule_extract_cv.html`) để xem hướng dẫn chi tiết, định dạng và các ràng buộc dữ liệu.
-3. **Bước 3 (Tự Xử Lý Suy Luận & Gọi Script Hệ Thống):** AI sử dụng năng lực của chính mình để dịch thuật, suy luận, định dạng dữ liệu, và chỉ gọi các Python scripts thuần để thực hiện các thao tác hệ thống (đọc file, ghi file Excel, tìm kiếm web).
+3. **Kiểm tra**
+   - Mở `File Explorer` → kiểm tra ổ mới (ví dụ `S:`) có nhãn “CV Tool” và biểu tượng tùy chọn.
+   - Chạy PowerShell và thực hiện lệnh `Get-PSDrive` để xác nhận ổ ảo đã được tạo.
 
----
+## ☕ Buy Me a Coffee
+Nếu bạn thấy công cụ hữu ích, hãy ủng hộ để tôi tiếp tục phát triển:
 
-## 🚀 Hướng Dẫn Tích Hợp Vào Antigravity (Global Rules)
+**VIB**
+**002606**
+**Nguyễn Thế Doanh**
 
-Để Antigravity tự động nhận diện và luôn luôn áp dụng quy trình xử lý của HR Tool trong mọi phiên làm việc, bạn cần nạp file hướng dẫn `INSTRUCTIONS_FOR_AI.md` vào cấu hình chung của Agent.
+![QR Code for donation](https://img.vietqr.io/image/VIB-002606-1.png?amount=0&addInfo=Support%20HR%20Tool&accountName=Nguyen%20The%20Doanh)
 
-### Cách 1: Sử dụng File Tự Động (Khuyên Dùng)
-1. Trong thư mục dự án, nhấp đúp (Double-click) để chạy file **`install_rules.bat`**.
-2. Script sẽ tự động phát hiện file cấu hình toàn cục `GEMINI.md` của Antigravity tại thư mục `%USERPROFILE%\.gemini\GEMINI.md` và thêm dòng nạp luật tự động.
-3. Nhấn phím bất kỳ để hoàn thành.
-
-### Cách 2: Cấu Hình Thủ Công
-Nếu không muốn dùng file `.bat`, bạn có thể mở file:
-`C:\Users\dell\.gemini\GEMINI.md`
-
-Và thêm dòng sau vào cuối file:
-```markdown
-# HR Tool Antigravity Rules
-@E:/Workshop/2025/hr-tool-antigravity/INSTRUCTIONS_FOR_AI.md
-```
-
----
-
-## 📂 Danh Sách File Luật & Scripts Hệ Thống
-
-### 1. Thư mục `rules/` (Quy định & Định dạng)
-*   **`master_rules.html`**: Định tuyến nghiệp vụ chính của AI Agent.
-*   **`rule_extract_cv.html`**: Quy định chuẩn trích xuất thông tin từ CV ứng viên vào Excel.
-*   **`rule_extract_jd.html`**: Quy định chuẩn trích xuất thông tin Mô tả công việc (JD) vào Excel.
-*   **`rule_score_cv.html`** & **`rule_score_jd.html`**: Tiêu chí đánh giá, chấm điểm CV và JD.
-*   **`rule_summarize_client.html`**: Định dạng tóm tắt thông tin công ty/khách hàng.
-*   **`rule_build_email.html`**: Mẫu email tiếp cận ứng viên/khách hàng.
-*   **`rule_create_ad.html`**: Quy định viết bài tuyển dụng & gợi ý thiết kế Canva.
-*   **`rule_search_files.html`**: Quy trình quét tìm kiếm tài liệu cục bộ.
-*   **`rule_suggest_script.html`**: Mẫu kịch bản tương tác tiếp theo.
-*   **`rule_lookup_term.html`**: Quy chuẩn giải nghĩa thuật ngữ chuyên ngành.
-*   **`style.css`**: Định dạng giao diện hiển thị cho các file luật.
-
-### 2. Thư mục `scripts/` (Công cụ hệ thống hỗ trợ)
-Các công cụ viết bằng Python thuần để Agent gọi trong các bước xử lý dữ liệu hệ thống:
-*   `extract_text.py`: Đọc nội dung thô từ file Word (`.docx`) hoặc PDF.
-*   `get_excel_fields.py`: Trích xuất tiêu đề các cột của file Excel hiện có.
-*   `write_to_excel.py`: Ghi dữ liệu dạng bảng Markdown do AI phân tích vào file Excel.
-*   `search_files.py`: Tìm kiếm file cục bộ theo từ khóa.
-*   `search_web.py`: Tra cứu công cụ tìm kiếm để thu thập dữ liệu thô về doanh nghiệp.
-*   `filter_forbidden_words.py`: Lọc và thay thế các từ cấm/từ nhạy cảm trong bài đăng tuyển dụng.
-
----
-
-## 🛡️ Lưu ý An Toàn Bảo Mật
-Dự án đã được cấu hình sẵn `.gitignore` để tránh đẩy các file rác, file chạy Python (`__pycache__`, `.venv`, `.idea`) hoặc các file cấu hình chứa API Key cá nhân lên GitHub.
+Bạn có thể truy cập https://vietqr.io/ để quét mã QR và thực hiện chuyển khoản.

@@ -1,7 +1,8 @@
 ﻿param (
     [string]$CvDir,
     [string]$RepoDir,
-    [string]$DriveLabel = "Google Shared with me"
+    [string]$DriveLabel = "Google Shared with me",
+    [string]$DriveIcon = "default"
 )
 
 function Write-Log {
@@ -46,6 +47,52 @@ if ($ShouldSubst) {
     try {
         $regKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\DriveIcons\$($driveLetter)\DefaultLabel"
         $null = New-Item -Path $regKey -Force -Value $DriveLabel
+        
+        $regKeyClasses = "HKCU:\Software\Classes\Applications\Explorer.exe\Drives\$($driveLetter)\DefaultLabel"
+        $null = New-Item -Path $regKeyClasses -Force -Value $DriveLabel
+    } catch {}
+    
+    # Set custom icon in Windows Registry
+    try {
+        $iconPath = ""
+        if ($DriveIcon -eq "gdrive") {
+            # Find Google Drive executable
+            $gdfs = Get-ChildItem -Path "C:\Program Files\Google\Drive File Stream" -Filter "GoogleDriveFS.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
+            if ($gdfs) {
+                $iconPath = "$gdfs,0"
+            } else {
+                $iconPath = "imageres.dll,198"
+            }
+        } elseif ($DriveIcon -eq "folder") {
+            $iconPath = "shell32.dll,3"
+        } elseif ($DriveIcon -eq "cloud") {
+            $iconPath = "imageres.dll,198"
+        } elseif ($DriveIcon -ne "default" -and $DriveIcon) {
+            $iconPath = $DriveIcon
+        }
+
+        if ($iconPath) {
+            $regIconKey1 = "HKCU:\Software\Classes\Applications\Explorer.exe\Drives\$($driveLetter)\DefaultIcon"
+            $null = New-Item -Path $regIconKey1 -Force -Value $iconPath
+            
+            $regIconKey2 = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\DriveIcons\$($driveLetter)\DefaultIcon"
+            $null = New-Item -Path $regIconKey2 -Force -Value $iconPath
+        } else {
+            Remove-Item -Path "HKCU:\Software\Classes\Applications\Explorer.exe\Drives\$($driveLetter)\DefaultIcon" -Force -ErrorAction SilentlyContinue | Out-Null
+            Remove-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\DriveIcons\$($driveLetter)\DefaultIcon" -Force -ErrorAction SilentlyContinue | Out-Null
+        }
+    } catch {}
+
+    # Notify Windows Shell to refresh labels and icons in Explorer
+    try {
+        if (-not ([System.Management.Automation.PSTypeName]"WinAPI.ShellNotify").Type) {
+            $code = @'
+            [System.Runtime.InteropServices.DllImport("Shell32.dll")]
+            public static extern int SHChangeNotify(int eventId, int flags, IntPtr item1, IntPtr item2);
+'@
+            Add-Type -MemberDefinition $code -Name ShellNotify -Namespace WinAPI -ErrorAction SilentlyContinue | Out-Null
+        }
+        $null = [WinAPI.ShellNotify]::SHChangeNotify(0x8000000, 0x1000, [IntPtr]::Zero, [IntPtr]::Zero)
     } catch {}
     
     # Verify if the drive now exists
