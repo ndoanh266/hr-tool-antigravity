@@ -1,5 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
+chcp 65001 >nul
 
 :: 1. Check if Windows XP
 ver | findstr /i "5.1." >nul
