@@ -50,13 +50,11 @@ if ($ShouldSubst) {
     subst "$($driveLetter):" /d 2>$null | Out-Null
     subst "$($driveLetter):" "$CvDir"
     
-    # Set custom label in Windows Registry so it displays as custom label
+    # Set custom label in Windows Registry so Windows Explorer displays custom name
     try {
-        $regKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\DriveIcons\$($driveLetter)\DefaultLabel"
-        $null = New-Item -Path $regKey -Force -Value $DriveLabel
-        
-        $regKeyClasses = "HKCU:\Software\Classes\Applications\Explorer.exe\Drives\$($driveLetter)\DefaultLabel"
-        $null = New-Item -Path $regKeyClasses -Force -Value $DriveLabel
+        reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\DriveIcons\$($driveLetter)\DefaultLabel" /ve /t REG_SZ /d "$DriveLabel" /f >$null 2>&1
+        reg add "HKCU\Software\Classes\Applications\Explorer.exe\Drives\$($driveLetter)\DefaultLabel" /ve /t REG_SZ /d "$DriveLabel" /f >$null 2>&1
+        reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\MountPoints2\$($driveLetter)" /v "_LabelFromReg" /t REG_SZ /d "$DriveLabel" /f >$null 2>&1
     } catch {}
     
     # Set custom icon in Windows Registry
@@ -79,11 +77,8 @@ if ($ShouldSubst) {
         }
 
         if ($iconPath) {
-            $regIconKey1 = "HKCU:\Software\Classes\Applications\Explorer.exe\Drives\$($driveLetter)\DefaultIcon"
-            $null = New-Item -Path $regIconKey1 -Force -Value $iconPath
-            
-            $regIconKey2 = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\DriveIcons\$($driveLetter)\DefaultIcon"
-            $null = New-Item -Path $regIconKey2 -Force -Value $iconPath
+            reg add "HKCU\Software\Classes\Applications\Explorer.exe\Drives\$($driveLetter)\DefaultIcon" /ve /t REG_SZ /d "$iconPath" /f >$null 2>&1
+            reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\DriveIcons\$($driveLetter)\DefaultIcon" /ve /t REG_SZ /d "$iconPath" /f >$null 2>&1
         } else {
             Remove-Item -Path "HKCU:\Software\Classes\Applications\Explorer.exe\Drives\$($driveLetter)\DefaultIcon" -Force -ErrorAction SilentlyContinue | Out-Null
             Remove-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\DriveIcons\$($driveLetter)\DefaultIcon" -Force -ErrorAction SilentlyContinue | Out-Null
