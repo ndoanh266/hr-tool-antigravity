@@ -1,4 +1,4 @@
-﻿param (
+param (
     [string]$RepoDir
 )
 
@@ -18,12 +18,13 @@ $ruleLine = "@$rulePath"
 Write-Host "Dang dang ky luat trong cau hinh Gemini toan cuc ($targetFile)..."
 
 if (-not (Test-Path $targetFile)) {
-    Write-Log "[ERROR] Khong tim thay file $targetFile!"
-    Write-Host "[ERROR] Khong tim thay file $targetFile!"
-    Write-Host "Vui long dam bao Antigravity da duoc khoi tao."
-    Add-Type -AssemblyName System.Windows.Forms
-    [System.Windows.Forms.MessageBox]::Show("Khong tim thay $targetFile! Vui long dam bao Antigravity da duoc khoi tao.", "HR Tool Installer", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
-    exit 1
+    Write-Log "[INFO] Thu muc .gemini hoac file GEMINI.md chua duoc khoi tao. Dang tu dong khoi tao..."
+    Write-Host "[INFO] Thu muc .gemini hoac file GEMINI.md chua duoc khoi tao. Dang tu dong khoi tao..."
+    $parentDir = Split-Path $targetFile
+    if (-not (Test-Path $parentDir)) {
+        New-Item -ItemType Directory -Force -Path $parentDir | Out-Null
+    }
+    New-Item -ItemType File -Force -Path $targetFile -Value "" | Out-Null
 }
 
 # Check if rule already exists
