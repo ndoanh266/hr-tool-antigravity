@@ -1,4 +1,4 @@
-﻿param($form, $globalState)
+param($form, $globalState)
 
 $panel = New-Object System.Windows.Forms.Panel
 $panel.Size = New-Object System.Drawing.Size(520, 440)
@@ -31,7 +31,7 @@ $p3Summary.Location = New-Object System.Drawing.Point(10, 90)
 $p3Summary.Size = New-Object System.Drawing.Size(500, 220)
 $p3Summary.BackColor = [System.Drawing.Color]::White
 
-$mappedLetter = if (![string]::IsNullOrEmpty($globalState.DriveLetter) -and $globalState.DriveLetter -ne "None" -and $globalState.DriveLetter -ne "SKIP") { $globalState.DriveLetter } else { "Không dùng (Dùng thư mục mặc định)" }
+$mappedLetter = if (![string]::IsNullOrEmpty($globalState.DriveLetter) -and $globalState.DriveLetter.Length -le 3 -and $globalState.DriveLetter -ne "None" -and $globalState.DriveLetter -ne "SKIP") { $globalState.DriveLetter } else { "Không dùng (Dùng thư mục mặc định)" }
 
 $summaryText = @"
 ==================================================
