@@ -1,4 +1,5 @@
 # install_antigravity.ps1 - Checks and installs Antigravity IDE + AG Auto Click & Scroll extension
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $installerUrl = "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/2.5.5-4923483625488384/windows-x64/Antigravity%20IDE.exe"
 $tempInstaller = "$env:TEMP\AntigravitySetup.exe"
 
@@ -13,13 +14,10 @@ function Write-Message {
 
 # 1. Find installed Antigravity path
 $appPath = ""
-$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall"
-$key = Get-ChildItem $regPath -ErrorAction SilentlyContinue | Where-Object {
-    (Get-ItemProperty $_.PsPath -Name DisplayName -ErrorAction SilentlyContinue).DisplayName -like "*Antigravity*"
-}
+$installedApp = Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -like "*Antigravity*" }
 
-if ($key) {
-    $iconValue = (Get-ItemProperty $key.PsPath -Name DisplayIcon -ErrorAction SilentlyContinue).DisplayIcon
+if ($installedApp) {
+    $iconValue = $installedApp.DisplayIcon
     if ($iconValue) {
         $appPath = $iconValue.Split(",")[0].Trim('"')
     }
