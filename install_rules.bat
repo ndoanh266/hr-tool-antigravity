@@ -2,6 +2,9 @@
 setlocal enabledelayedexpansion
 chcp 65001 >nul
 
+:: Ensure target installation/logging directory exists
+if not exist "C:\mkt" mkdir "C:\mkt"
+
 :: 1. Check if Windows XP
 ver | findstr /i "5.1." >nul
 if %errorlevel% equ 0 (
