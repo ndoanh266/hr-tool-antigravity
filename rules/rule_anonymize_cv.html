@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quy Tắc Bảo Mật Thông Tin CV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="master_rules.html" class="nav-brand">Headhunter AI v1.6</a>
+            <div class="nav-menu">
+                <a href="master_rules.html" class="nav-link">Trang Chủ</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Trích Xuất ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_extract_cv.html">Trích xuất CV</a>
+                        <a href="rule_extract_jd.html">Trích xuất JD</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Chấm Điểm ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_score_cv.html">Chấm điểm CV</a>
+                        <a href="rule_score_jd.html">Chấm điểm JD</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Vận Hành ▼</button>
+                    <div class="dropdown-content">
+                        <a href="rule_search_files.html">Tìm kiếm file</a>
+                        <a href="rule_summarize_client.html">Thông tin KH</a>
+                        <a href="rule_lookup_term.html">Tra thuật ngữ</a>
+                        <a href="rule_build_email.html">Viết Email</a>
+                        <a href="rule_suggest_script.html">Kịch bản chat</a>
+                        <a href="rule_create_ad.html">Tin tuyển dụng</a>
+                        <a href="rule_anonymize_cv.html">Bảo mật CV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <h1>Quy Tắc: Bảo Mật Thông Tin CV (Anonymize & Branding)</h1>
+        <p>Quy trình bảo mật thông tin liên hệ nhạy cảm của ứng viên trước khi chuyển giao hồ sơ cho đối tác tuyển dụng, đồng thời đóng dấu logo Worklink nhằm tăng nhận diện thương hiệu chuyên nghiệp.</p>
+        
+        <h2>Quy Trình Tự Động Hóa 2 Tùy Chọn:</h2>
+        
+        <h3>Tùy chọn A: Xử lý file Word (.docx) và chuyển sang PDF</h3>
+        <p>Sử dụng script <code>anonymize_cv.py</code> để lọc thông tin liên hệ nhạy cảm, chuẩn hóa niên hiệu năm Nhật Bản sang năm Dương lịch và tự động chuyển đổi sang PDF qua MS Word COM API.</p>
+        <pre><code>python scripts/anonymize_cv.py --input "Bộ dữ liệu mẫu\VU HONG TRANG_2026_JP.docx" --output_docx "Bộ dữ liệu mẫu\WL_VU_HONG_TRANG_2026_JP_Secure.docx" --output_pdf "Bộ dữ liệu mẫu\WL_VU_HONG_TRANG_2026_JP_Secure.pdf"</code></pre>
+        
+        <h3>Tùy chọn B: Xử lý trực tiếp trên file PDF gốc & Chèn Logo</h3>
+        <p>Sử dụng script <code>anonymize_pdf.py</code> kết hợp thư viện <code>PyMuPDF</code> để tìm tọa độ text (SĐT, Email), vẽ đè các khối chữ nhật màu nền (màu kem <code>#e8ded1</code> hoặc trắng) để che giấu và chèn logo trực tiếp vào file PDF đích.</p>
+        <pre><code>python scripts/anonymize_pdf.py --input "Bộ dữ liệu mẫu\NGUYEN-THI-THU-HUYEN-TopCV.vn-160626.192455.pdf" --output "Bộ dữ liệu mẫu\WL_NGUYEN_THI_THU_HUYEN_Secure.pdf" --logo "rules\logo worklink.png"</code></pre>
+        
+        <h2>Logo Thương Hiệu Worklink:</h2>
+        <p>Logo thương hiệu được chèn vào góc trên bên trái vùng nội dung chính (tọa độ <code>x=232, y=5, w=60, h=31</code>) của file PDF:</p>
+        <img src="logo worklink.png" alt="Worklink Logo" style="max-width: 250px; display: block; margin: 15px 0; padding: 10px; border: 1px solid var(--gray-300); border-radius: 4px; background-color: #ffffff;">
+
+        <h2>Nguyên Tắc Bảo Mật Cần Tuân Thủ:</h2>
+        <ul>
+            <li><strong>Số Điện Thoại (SĐT):</strong> Che phủ toàn bộ dãy số, không để lộ 3 số đầu hoặc 3 số cuối nếu chưa ký hợp đồng dịch vụ.</li>
+            <li><strong>Email:</strong> Che phủ hoàn toàn tên miền và tên tài khoản.</li>
+            <li><strong>Đại Chỉ Chi Tiết:</strong> Thay đổi hoặc rút ngắn về cấp Tỉnh/Thành phố (Ví dụ: <i>"Số 12 ngõ 3 đường Lê Lợi, TP. Hải Phòng"</i> -> <i>"Hải Phòng"</i>).</li>
+            <li><strong>Năm Nhật Bản:</strong> Quy đổi Heisei (Bình Thành), Reiwa (Lệnh Hòa) và Showa (Chiêu Hòa) sang Dương lịch để khách hàng doanh nghiệp ngoại dễ so sánh.</li>
+        </ul>
+    </div>
+</body>
+</html>

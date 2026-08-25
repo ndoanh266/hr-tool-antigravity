@@ -55,3 +55,7 @@ Mở file luật HTML chi tiết tương ứng (ví dụ: `rules/rule_extract_cv
 - **Tư duy của bạn (AI):** Tự viết nội dung bài tuyển dụng thô dựa theo mô tả.
 - **Hệ thống:** Chạy `python scripts/filter_forbidden_words.py --text "<bài_viết_thô_của_bạn>"` để tự động lọc và thay thế từ cấm.
 - **Tư duy của bạn (AI):** Nhận nội dung đã lọc từ cấm, sau đó tự đề xuất cách thiết kế/trang trí tin tuyển dụng trên Canva.
+
+#### 11. Bảo mật & Che thông tin CV (rule_anonymize_cv.html)
+- **Hệ thống:** Chạy `python scripts/anonymize_cv.py --input "<cv_docx>" --output_docx "<out_docx>" --output_pdf "<out_pdf>"` đối với file Word.
+- **Hệ thống:** Chạy `python scripts/anonymize_pdf.py --input "<cv_pdf>" --output "<out_pdf>" --logo "<logo_path>"` đối với file PDF.
