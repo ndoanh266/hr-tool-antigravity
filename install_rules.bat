@@ -123,7 +123,7 @@ if exist "%CURRENT_DIR%\hr-tool-antigravity" (
 )
 
 echo ========================================================
-echo  [HE THONG] KIEM TRA & CAP NHAT HR TOOL ANTIGRAVITY
+echo  [HE THONG] KIEM TRA ^& CAP NHAT HR TOOL ANTIGRAVITY
 echo ========================================================
 echo Dang kiem tra va cap nhat phien ban moi nhat tu GitHub...
 echo.
@@ -181,7 +181,7 @@ echo [OK] Dong bo phien ban thanh cong!
 echo.
 
 echo ========================================================
-echo  [MOI TRUONG] KIEM TRA & CAI DAT ANTIGRAVITY IDE
+echo  [MOI TRUONG] KIEM TRA ^& CAI DAT ANTIGRAVITY IDE
 echo ========================================================
 powershell -NoProfile -ExecutionPolicy Bypass -File "!REPO_DIR!\scripts\install_antigravity.ps1"
 echo.
