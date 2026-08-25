@@ -133,12 +133,14 @@ if %errorlevel% equ 0 (
     if exist "!REPO_DIR!\.git" (
         echo [*] Dang cap nhat ma nguon qua Git...
         pushd "!REPO_DIR!"
+        git checkout -- . >nul 2>&1
         git fetch origin main >nul 2>&1
         git pull origin main
         popd
     ) else if exist "%CURRENT_DIR%\.git" (
         echo [*] Dang cap nhat ma nguon qua Git...
         pushd "%CURRENT_DIR%"
+        git checkout -- . >nul 2>&1
         git fetch origin main >nul 2>&1
         git pull origin main
         popd
