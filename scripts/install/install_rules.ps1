@@ -1,4 +1,4 @@
-﻿# install_rules.ps1 - Unified Installer Orchestrator
+﻿﻿# install_rules.ps1 - Unified Installer Orchestrator
 $repoUrl = "https://github.com/ndoanh266/hr-tool-antigravity.git"
 $tempPathFile = "$env:TEMP\hr_tool_setup_paths.txt"
 $logFile = "C:\mkt\installer_debug.log"

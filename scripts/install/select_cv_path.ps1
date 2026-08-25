@@ -1,4 +1,4 @@
-﻿Add-Type -AssemblyName System.Windows.Forms
+﻿﻿Add-Type -AssemblyName System.Windows.Forms
 $d = New-Object System.Windows.Forms.FolderBrowserDialog
 $d.Description = 'Chon thu muc chua cac file CV cua ban (Vi du: Thu muc Google Drive dong bo)'
 $d.ShowNewFolderButton = $true

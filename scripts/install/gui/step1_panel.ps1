@@ -1,4 +1,4 @@
-﻿param($form, $globalState)
+﻿﻿param($form, $globalState)
 
 $panel = New-Object System.Windows.Forms.Panel
 $panel.Size = New-Object System.Drawing.Size(520, 440)

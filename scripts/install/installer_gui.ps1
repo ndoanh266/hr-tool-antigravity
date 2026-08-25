@@ -1,4 +1,4 @@
-﻿param (
+param (
     [switch]$Success,
     [string]$RepoDir = "C:\mkt",
     [string]$CvDir = "",
@@ -52,10 +52,10 @@ try {
 
     # Load panel definitions from modular files
     Write-Log "Dang load cac panels tu scripts..."
-    $panel1 = . "$PSScriptRoot\gui\step1_panel.ps1" -form $form -globalState $globalState
-    $panel2_1 = . "$PSScriptRoot\gui\step2_1_panel.ps1" -form $form -globalState $globalState
-    $panel2_2 = . "$PSScriptRoot\gui\step2_2_panel.ps1" -form $form -globalState $globalState
-    $panel3 = . "$PSScriptRoot\gui\step3_panel.ps1" -form $form -globalState $globalState
+    $panel1 = . ([scriptblock]::Create(((Get-Content -Path "$PSScriptRoot\gui\step1_panel.ps1" -Encoding UTF8 -Raw).TrimStart([char]0xFEFF)))) -form $form -globalState $globalState
+    $panel2_1 = . ([scriptblock]::Create(((Get-Content -Path "$PSScriptRoot\gui\step2_1_panel.ps1" -Encoding UTF8 -Raw).TrimStart([char]0xFEFF)))) -form $form -globalState $globalState
+    $panel2_2 = . ([scriptblock]::Create(((Get-Content -Path "$PSScriptRoot\gui\step2_2_panel.ps1" -Encoding UTF8 -Raw).TrimStart([char]0xFEFF)))) -form $form -globalState $globalState
+    $panel3 = . ([scriptblock]::Create(((Get-Content -Path "$PSScriptRoot\gui\step3_panel.ps1" -Encoding UTF8 -Raw).TrimStart([char]0xFEFF)))) -form $form -globalState $globalState
 
     # Map panels in globalState
     $globalState.Panel1 = $panel1
