@@ -2,6 +2,20 @@
 setlocal enabledelayedexpansion
 chcp 65001 >nul
 
+:: Determine the original directory to preserve across redirection and elevation
+if "%~1" neq "" (
+    set "ORIGINAL_DIR=%~1"
+) else (
+    set "ORIGINAL_DIR=%~dp0"
+)
+
+:: If not running from TEMP, copy to TEMP and execute from there to prevent file lock issues during Git updates
+if "%~dp0" neq "%TEMP%\" (
+    copy /y "%~dpnx0" "%TEMP%\install_rules.bat" >nul
+    "%TEMP%\install_rules.bat" "%ORIGINAL_DIR%"
+    exit /b %errorlevel%
+)
+
 :: Ensure target installation/logging directory exists
 if not exist "C:\mkt" mkdir "C:\mkt"
 
@@ -38,7 +52,7 @@ if "!MISSING_DEP!"=="1" (
         echo Phat hien may tinh cua ban thieu moi truong chay tool [Python, Git hoac PowerShell].
         echo Dang yeu cau quyen Administrator de tu dong tai va cai dat ngam cac thanh phan con thieu...
         echo.
-        powershell -Command "Start-Process '%~dpnx0' -Verb RunAs"
+        powershell -Command "Start-Process '%~dpnx0' -ArgumentList '\"%ORIGINAL_DIR%\"' -Verb RunAs"
         exit /b 0
     )
 )
@@ -110,7 +124,7 @@ if %errorlevel% neq 0 (
 )
 
 :: 5. Check and retrieve / update installer files from GitHub
-set "CURRENT_DIR=%~dp0"
+set "CURRENT_DIR=%ORIGINAL_DIR%"
 set "CURRENT_DIR=%CURRENT_DIR:~0,-1%"
 
 :: Always change directory to the batch file's folder to prevent working directory issues (like C:\Windows\System32 when run as admin)
