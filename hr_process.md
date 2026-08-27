@@ -1,6 +1,6 @@
-# QUY TRÌNH LÀM VIỆC CỦA NHÂN VIÊN HR (TƯ VẤN TUYỂN DỤNG) TẠI WORKLINK
+# QUY TRÌNH LÀM VIỆC CỦA NHÂN VIÊN HR (TƯ VẤN TUYỂN DỤNG)
 
-Tài liệu này tổng hợp toàn bộ quy trình vận hành và nghiệp vụ của **Chuyên viên Tư vấn Tuyển dụng (TVTD)** tại Worklink Việt Nam dựa trên các tài liệu quy trình và hướng dẫn nghiệp vụ nội bộ. Quy trình được phân tách rõ ràng thành các mảng: **Quy trình Kinh doanh & Tuyển dụng**, **Quy trình Xử lý Hồ sơ Ứng viên**, **Quy định Lưu trữ Thông tin**, và **Định hướng Ứng dụng Công nghệ (AI)**.
+Tài liệu này tổng hợp toàn bộ quy trình vận hành và nghiệp vụ của **Chuyên viên Tư vấn Tuyển dụng (TVTD)** dựa trên các tài liệu quy trình và hướng dẫn nghiệp vụ nội bộ. Quy trình được phân tách rõ ràng thành các mảng: **Quy trình Kinh doanh & Tuyển dụng**, **Quy trình Xử lý Hồ sơ Ứng viên**, **Quy định Lưu trữ Thông tin**, và **Định hướng Ứng dụng Công nghệ (AI)**.
 
 ---
 
@@ -12,7 +12,7 @@ Tài liệu này tổng hợp toàn bộ quy trình vận hành và nghiệp v�
 graph TD
     B1[Bước 1: Tìm & tiếp cận khách hàng] --> B2[Bước 2: Đàm phán & ký hợp đồng]
     B2 --> B3[Bước 3: Tìm ứng viên phù hợp]
-    B3 --> B4[Bước 4: Phỏng vấn vòng 1 tại Worklink]
+    B3 --> B4[Bước 4: Phỏng vấn vòng 1 tại Văn phòng]
     B4 --> B5[Bước 5: Phỏng vấn vòng 2 tại Khách hàng]
     B5 --> B6[Bước 6: Gửi đề nghị thanh toán]
     B6 --> B7[Bước 7: Theo dõi thử việc & Bảo hành]
@@ -24,8 +24,8 @@ graph TD
 *   **Các kênh tìm kiếm:**
     *   *Kênh tuyển dụng trực tuyến:* Careerlink, Jobstreet, Careerbuilder... Tìm doanh nghiệp đang đăng tuyển, đánh giá khả năng cung ứng ứng viên trên thị trường để gửi email/gọi điện mời dịch vụ.
     *   *Kênh thông tin đầu tư:* Vtown.vn, hosocongty.vn, thongtindoanhnghiep.co... Xác định doanh nghiệp FDI mới vào Việt Nam, tìm hiểu lĩnh vực hoạt động của họ để chào dịch vụ.
-    *   *Mối quan hệ có điều kiện:* Tiếp cận Ban quản lý KCN, Trưởng phòng Nhân sự các nhà máy để kết nối (hỗ trợ chi trả hoa hồng nếu được Giám đốc Ban duyệt).
-*   **Tiếp cận khách hàng:** Gửi email kèm báo giá và profile của Worklink, kết hợp gọi điện trực tiếp.
+    *   *Mối quan hệ có điều kiện:* Tiếp cận Ban quản lý KCN, Trưởng phòng Nhân sự các nhà máy để kết nối (hỗ trợ chi trả hoa hồng nếu được Giám đốc duyệt).
+*   **Tiếp cận khách hàng:** Gửi email kèm báo giá và profile giới thiệu dịch vụ, kết hợp gọi điện trực tiếp.
     > [!IMPORTANT]
     > **Ràng buộc quan trọng:**
     > * Chuyên viên được phép gửi một số hồ sơ chất lượng cao để "ướm thử" nhằm tăng cơ hội hợp tác.
@@ -38,30 +38,30 @@ graph TD
 *   **Chính sách phí dịch vụ tiêu chuẩn:**
     *   Phí trọn gói: Bằng **02 tháng lương gộp (gross)** của ứng viên.
     *   Cấu trúc phí: **15%** là Phí tuyển dụng ứng viên; **85%** là Phí hỗ trợ & tư vấn chế độ.
-    *   Mọi thỏa thuận giảm phí dưới mức quy định hoặc chiết khấu hoa hồng cho nhân sự của khách hàng bắt buộc phải báo cáo và được sự duyệt của Giám đốc Ban.
+    *   Mọi thỏa thuận giảm phí dưới mức quy định hoặc chiết khấu hoa hồng cho nhân sự của khách hàng bắt buộc phải báo cáo và được sự phê duyệt của Ban Giám đốc.
 *   **Thuế VAT:** Phí dịch vụ chưa bao gồm 10% VAT. Đối với doanh nghiệp KCN thuộc diện miễn thuế VAT, chuyên viên phải yêu cầu khách hàng cung cấp bản xác nhận miễn thuế (bản scan hoặc bản cứng có dấu đỏ) để chuyển phòng Kế toán. Chuyên viên chịu trách nhiệm hoàn toàn nếu quên thu thập giấy này.
 *   **Quy trình duyệt hợp đồng:**
     ```
-    Chuyên viên soạn HĐ cứng -> Admin Headhunt check -> Trưởng nhóm check -> GĐ Ban duyệt/ký nháy -> Chuyên viên ký nháy -> Gửi email báo cáo GĐ Ban (cc GĐ VGC Group & Admin) -> Trình ký GĐ VGC Group (trước 1 ngày) -> Hành chính đóng dấu -> Chuyển phát nhanh cho khách hàng -> Admin lưu file.
+    Chuyên viên soạn HĐ cứng -> Admin check -> Trưởng nhóm check -> GĐ duyệt/ký nháy -> Chuyên viên ký nháy -> Gửi email báo cáo GĐ (cc Ban Giám đốc & Admin) -> Trình ký GĐ (trước 1 ngày) -> Hành chính đóng dấu -> Chuyển phát nhanh cho khách hàng -> Admin lưu file.
     ```
 
 ### Bước 3: Tìm ứng viên
 *   **Kênh tìm kiếm:** Tìm qua các trang tuyển dụng trực tuyến, diễn đàn chuyên môn, mối quan hệ hoặc kho dữ liệu nội bộ.
     > [!WARNING]
-    > Worklink quy định **không sử dụng các kênh tuyển dụng có tính phí** vào hoạt động tìm kiếm ứng viên.
-*   **Sơ loại:** Đánh giá hồ sơ bản mềm, gọi điện trao đổi sơ bộ để lọc các hồ sơ không đạt yêu cầu. Với vị trí cấp cao, phải tham khảo ý kiến của Giám đốc Ban và Trưởng nhóm trước khi gửi đi.
-*   **Quy tắc gọi điện cho ứng viên:** Giới thiệu bản thân và Worklink -> Hỏi nhu cầu -> Giới thiệu vị trí (tuyệt đối không nói tên khách hàng cụ thể) -> Mời phỏng vấn vòng 1 -> Yêu cầu gửi email xác nhận kèm CV cập nhật theo form Worklink.
+    > Công ty quy định **không sử dụng các kênh tuyển dụng có tính phí** vào hoạt động tìm kiếm ứng viên nếu chưa được phê duyệt ngân sách.
+*   **Sơ loại:** Đánh giá hồ sơ bản mềm, gọi điện trao đổi sơ bộ để lọc các hồ sơ không đạt yêu cầu. Với vị trí cấp cao, phải tham khảo ý kiến của Ban Giám đốc và Trưởng nhóm trước khi gửi đi.
+*   **Quy tắc gọi điện cho ứng viên:** Giới thiệu bản thân và công ty -> Hỏi nhu cầu -> Giới thiệu vị trí (tuyệt đối không nói tên khách hàng cụ thể) -> Mời phỏng vấn vòng 1 -> Yêu cầu gửi email xác nhận kèm CV cập nhật theo form mẫu.
 
 ### Bước 4: Phỏng vấn vòng 1
-*   **Hình thức:** Ưu tiên mời ứng viên phỏng vấn trực tiếp tại văn phòng Worklink.
-    *   *Trường hợp bất khả kháng (ở tỉnh xa):* Phỏng vấn qua điện thoại và Skype (phải đánh giá kỹ ngoại hình, giọng nói, phản xạ và đối chiếu hồ sơ).
+*   **Hình thức:** Ưu tiên mời ứng viên phỏng vấn trực tiếp tại văn phòng.
+    *   *Trường hợp bất khả kháng (ở tỉnh xa):* Phỏng vấn qua điện thoại và video call (phải đánh giá kỹ ngoại hình, giọng nói, phản xạ và đối chiếu hồ sơ).
     *   *Ứng viên cấp quản lý:* Chuyên viên có thể chủ động hẹn gặp ở địa điểm gần nơi làm việc của họ.
 *   **Thời gian:** Hẹn trước ít nhất 01 ngày. Phỏng vấn tối thiểu 30 phút/người. Khung giờ phỏng vấn từ 9h đến trước 17h (tránh sáng sớm, giờ nghỉ trưa hoặc cuối chiều muộn).
 *   **Bảo mật thông tin:**
     *   Đề nghị ứng viên **không cung cấp số điện thoại/email cá nhân** cho khách hàng tại vòng phỏng vấn 2.
     *   Sử dụng mã số hồ sơ cho các trường hợp đặc biệt cần bảo mật thông tin.
-    *   Khi gửi hồ sơ sang khách hàng: **Xóa bỏ SĐT, email, địa chỉ, ngày sinh (chỉ giữ lại năm sinh)**, dùng form mẫu quy định của Worklink và lưu dưới định dạng PDF.
-*   **Đánh giá:** Điền kết quả vào form Đánh giá ứng viên (QTTUV/WL-BM/03). Gửi hồ sơ kèm đánh giá cho khách hàng, gọi điện thúc giục nhận xét sớm để chốt lịch vòng 2.
+    *   Khi gửi hồ sơ sang khách hàng: **Xóa bỏ SĐT, email, địa chỉ, ngày sinh (chỉ giữ lại năm sinh)**, dùng form mẫu quy định của công ty và lưu dưới định dạng PDF.
+*   **Đánh giá:** Điền kết quả vào form Đánh giá ứng viên. Gửi hồ sơ kèm đánh giá cho khách hàng, gọi điện thúc giục nhận xét sớm để chốt lịch vòng 2.
 
 ### Bước 5: Phỏng vấn vòng 2
 *   Theo dõi phản hồi từ khách hàng trong tối đa **02 ngày làm việc** (kiểm tra trùng lặp data hồ sơ, đồng ý hay từ chối phỏng vấn vòng 2).
@@ -80,8 +80,8 @@ graph TD
 ### Bước 7: Cập nhật - Bảo hành
 *   Trong **60 ngày thử việc** của ứng viên: Mỗi tuần chuyên viên phải gọi điện cho khách hàng để cập nhật trạng thái làm việc của ứng viên.
 *   **Chính sách bảo hành:**
-    *   Nếu ứng viên nghỉ việc hoặc không đạt yêu cầu: Worklink có trách nhiệm tìm kiếm **01 ứng viên khác thay thế miễn phí**.
-    *   Nếu trong vòng **30 ngày** kể từ khi ứng viên cũ nghỉ việc, Worklink không tìm được người thay thế hoặc khách hàng không muốn tuyển nữa: **Hoàn lại 50% phí tuyển dụng** cho khách hàng.
+    *   Nếu ứng viên nghỉ việc hoặc không đạt yêu cầu: Công ty có trách nhiệm tìm kiếm **01 ứng viên khác thay thế miễn phí**.
+    *   Nếu trong vòng **30 ngày** kể từ khi ứng viên cũ nghỉ việc, công ty không tìm được người thay thế hoặc khách hàng không muốn tuyển nữa: **Hoàn lại 50% phí tuyển dụng** cho khách hàng.
     *   *Trường hợp loại trừ bảo hành:* Khách hàng tự ý thay đổi mức lương thỏa thuận ban đầu mà không có sự đồng ý của ứng viên dẫn đến việc ứng viên nghỉ việc.
 *   **Quy trình hoàn phí:** Lập Biên bản nghiệm thu và giảm giá dịch vụ -> Chuyển Kế toán hủy hóa đơn VAT cũ, xuất hóa đơn mới và chuyển khoản hoàn tiền.
 
@@ -116,18 +116,18 @@ graph TD
 4.  **Bước 4: Liên hệ ứng viên:**
     *   Gọi điện làm rõ các thông tin nghi vấn ở Bước 3.
     *   Tư vấn sửa CV nếu cần, trao đổi nguyện vọng cụ thể và giới thiệu job.
-    *   Chuyển máy cho **Thực tập sinh (TTS) tiếng Nhật** của văn phòng để check khả năng ngoại ngữ trực tiếp.
+    *   Chuyển máy cho **Thực tập sinh (TTS) ngoại ngữ** của văn phòng để check khả năng ngoại ngữ trực tiếp.
 5.  **Bước 5: Check tiếng:**
-    *   TTS tiếng Nhật gọi điện check tiếng, đánh giá các tiêu chí: Phản xạ giao tiếp, ngữ pháp, từ vựng, phát âm, thái độ trao đổi.
-    *   Chuyên viên lưu file vào máy, đổi tên file theo định dạng: `WL - Họ tên - Năm sinh - Bằng cấp - Ngoại ngữ - Vị trí - Địa chỉ` (Ví dụ: `WL - Nguyen Van A - 1992 - DH - N2 - QLSX - HY`).
+    *   TTS gọi điện check tiếng, đánh giá các tiêu chí: Phản xạ giao tiếp, ngữ pháp, từ vựng, phát âm, thái độ trao đổi.
+    *   Chuyên viên lưu file vào máy, đổi tên file theo định dạng: `CV - Họ tên - Năm sinh - Bằng cấp - Ngoại ngữ - Vị trí - Địa chỉ` (Ví dụ: `CV - Nguyen Van A - 1992 - DH - N2 - QLSX - HY`).
     *   Trao đổi với TTS để chốt năng lực thực tế của ứng viên và hướng nghiệp job phù hợp nhất. Gọi điện lại tư vấn kỹ hơn cho ứng viên.
 6.  **Bước 6: Chỉnh sửa nội dung CV:**
-    *   Chuyển thông tin CV sang mẫu chuẩn của Worklink (có thể nhờ TTS tiếng Nhật hỗ trợ dịch thuật và kiểm tra lỗi chính tả).
+    *   Chuyển thông tin CV sang mẫu chuẩn của công ty (có thể nhờ TTS ngoại ngữ hỗ trợ dịch thuật và kiểm tra lỗi chính tả).
     *   Xuất file dưới dạng **PDF** trước khi chuyển tiếp.
 7.  **Bước 7: Gửi CV sang Headhunt Care của khách hàng:**
-    *   Đổi tên file chuẩn hóa: `WL - Họ tên - Năm sinh - Bằng cấp - Ngoại ngữ - Vị trí - Nơi làm việc`.
+    *   Đổi tên file chuẩn hóa: `CV - Họ tên - Năm sinh - Bằng cấp - Ngoại ngữ - Vị trí - Nơi làm việc`.
     *   *Khu vực HCM:* Gửi file đính kèm trực tiếp.
-    *   *Khu vực Hà Nội:* Upload CV lên server chung của công ty theo đường dẫn: `\\server\Tai_lieu_chung\2. Headhunter (CV+JD)\1. CV`, sau đó copy link server đính kèm vào email gửi đi.
+    *   *Khu vực Hà Nội:* Upload CV lên server chung của công ty, sau đó copy link server đính kèm vào email gửi đi.
 8.  **Bước 8: Cập nhật thông tin vào file theo dõi:**
     *   Ghi nhận dữ liệu ứng viên vào file Excel quản lý tổng của bộ phận.
 
@@ -139,7 +139,7 @@ Việc lưu trữ thông tin đầy đủ giúp HR tăng tốc độ khớp lệ
 
 ### 1. Các trường thông tin bắt buộc phải lưu trữ trên Excel
 *   **Thông tin cá nhân:** Họ và tên, Tên gọi, Giới tính, Ngày sinh, Quê quán, Địa chỉ hiện tại, SĐT, Email, Link Facebook, Skype, Linkedin.
-*   **Trình độ học vấn:** Bằng cấp (ĐH/CĐ/Senmon), Tên trường, Chuyên ngành, Năm tốt nghiệp, Chứng chỉ tiếng Nhật (N1/N2/N3...), Kết quả check tiếng của TTS, Ngoại ngữ khác.
+*   **Trình độ học vấn:** Bằng cấp (ĐH/CĐ/Senmon), Tên trường, Chuyên ngành, Năm tốt nghiệp, Chứng chỉ ngoại ngữ (N1/N2/N3...), Kết quả check tiếng của TTS, Ngoại ngữ khác.
 *   **Nguyện vọng ứng viên:** Địa điểm làm việc mong muốn, Vị trí công việc (Phiên dịch, HCNS, Trợ lý, XNK-Mua hàng, QA/QC, Sản xuất...), Cấp bậc mong muốn (Staff, Supervisor, Manager...), Mức lương mong muốn (VNĐ).
 *   **Kinh nghiệm làm việc:** Phân loại cấp bậc kinh nghiệm (TTS mới về nước, DHS mới về nước, Nhân viên có kinh nghiệm, Quản lý...) và số năm kinh nghiệm thực tế.
 *   **Trạng thái & Lịch sử tư vấn:** Danh sách job đã tư vấn, Trạng thái hiện tại (Đang tìm việc, Đã trúng tuyển, Đang ở Nhật chờ ngày về nước, Chưa tốt nghiệp...), và các nhận xét đánh giá khác.
@@ -153,16 +153,16 @@ Việc lưu trữ thông tin đầy đủ giúp HR tăng tốc độ khớp lệ
 ---
 
 ## PHẦN IV: QUY TRÌNH BÀN GIAO KHI NGHỈ VIỆC
-Để bảo vệ tài nguyên dữ liệu của công ty, khi dừng công việc tại Worklink, chuyên viên TVTD tuyệt đối không được tự ý chuyển trực tiếp data khách hàng/ứng viên cho chuyên viên khác. Quy trình bàn giao bắt buộc như sau:
+Để bảo vệ tài nguyên dữ liệu của công ty, khi dừng công việc tại công ty, chuyên viên TVTD tuyệt đối không được tự ý chuyển trực tiếp data khách hàng/ứng viên cho chuyên viên khác. Quy trình bàn giao bắt buộc như sau:
 
 1.  **Bước 1:** Chuyên viên tổng hợp toàn bộ tình trạng các khách hàng đang phụ trách quản lý và danh sách ứng viên đang trong quá trình phỏng vấn/chờ kết quả vào **01 file Word duy nhất**.
-2.  **Bước 2:** Gửi email bàn giao chính thức đính kèm file trên tới **Admin Headhunt**, đồng gửi (Cc) cho **Giám đốc Ban**.
-3.  **Bước 3:** Admin Headhunt phối hợp cùng Giám đốc Ban xem xét, đánh giá khối lượng công việc và tiến hành phân chia cụ thể các tài khoản khách hàng, ứng viên này cho các chuyên viên TVTD khác tiếp tục chăm sóc.
+2.  **Bước 2:** Gửi email bàn giao chính thức đính kèm file trên tới **Admin**, đồng gửi (Cc) cho **Giám đốc**.
+3.  **Bước 3:** Admin phối hợp cùng Giám đốc xem xét, đánh giá khối lượng công việc và tiến hành phân chia cụ thể các tài khoản khách hàng, ứng viên này cho các chuyên viên TVTD khác tiếp tục chăm sóc.
 
 ---
 
-## PHẦN V: ĐỊNH HƯỚNG TÍCH HỢP AI VÀO QUY TRÌNH NHÂN SỰ WORKLINK
-Worklink đang hướng tới việc đào tạo và ứng dụng công nghệ Trí tuệ nhân tạo (AI) để tối ưu hóa năng suất của chuyên viên TVTD:
+## PHẦN V: ĐỊNH HƯỚNG TÍCH HỢP AI VÀO QUY TRÌNH NHÂN SỰ
+Công ty đang hướng tới việc đào tạo và ứng dụng công nghệ Trí tuệ nhân tạo (AI) để tối ưu hóa năng suất của chuyên viên TVTD:
 
 *   **Mục tiêu:** Rút ngắn thời gian tuyển dụng (giảm KPI thời gian xử lý), nâng cao độ chính xác khi lọc CV và cải thiện trải nghiệm khách hàng/ứng viên.
 *   **Các mảng tích hợp chính:**
