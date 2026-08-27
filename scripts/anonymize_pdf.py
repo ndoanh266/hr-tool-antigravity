@@ -48,7 +48,7 @@ if __name__ == "__main__":
     if hasattr(sys.stdout, 'reconfigure'):
         sys.stdout.reconfigure(encoding='utf-8')
         
-    parser = argparse.ArgumentParser(description="Ẩn thông tin bảo mật và chèn logo Worklink trực tiếp vào file PDF.")
+    parser = argparse.ArgumentParser(description="Ẩn thông tin bảo mật và chèn logo thương hiệu trực tiếp vào file PDF.")
     parser.add_argument("--input", required=True, help="Đường dẫn file PDF gốc")
     parser.add_argument("--output", required=True, help="Đường dẫn xuất file PDF bảo mật")
     parser.add_argument("--logo", required=True, help="Đường dẫn file logo PNG/JPG")

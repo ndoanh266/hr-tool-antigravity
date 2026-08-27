@@ -45,7 +45,7 @@
     <!-- Main Content Container -->
     <div class="container">
         <h1>Quy Tắc: Bảo Mật Thông Tin CV (Anonymize & Branding)</h1>
-        <p>Quy trình bảo mật thông tin liên hệ nhạy cảm của ứng viên trước khi chuyển giao hồ sơ cho đối tác tuyển dụng, đồng thời đóng dấu logo Worklink nhằm tăng nhận diện thương hiệu chuyên nghiệp.</p>
+        <p>Quy trình bảo mật thông tin liên hệ nhạy cảm của ứng viên trước khi chuyển giao hồ sơ cho đối tác tuyển dụng, đồng thời đóng dấu logo thương hiệu nhằm tăng nhận diện thương hiệu chuyên nghiệp.</p>
         
         <h2>Quy Trình Tự Động Hóa 2 Tùy Chọn:</h2>
         
@@ -55,11 +55,11 @@
         
         <h3>Tùy chọn B: Xử lý trực tiếp trên file PDF gốc & Chèn Logo</h3>
         <p>Sử dụng script <code>anonymize_pdf.py</code> kết hợp thư viện <code>PyMuPDF</code> để tìm tọa độ text (SĐT, Email), vẽ đè các khối chữ nhật màu nền (màu kem <code>#e8ded1</code> hoặc trắng) để che giấu và chèn logo trực tiếp vào file PDF đích.</p>
-        <pre><code>python scripts/anonymize_pdf.py --input "Bộ dữ liệu mẫu\NGUYEN-THI-THU-HUYEN-TopCV.vn-160626.192455.pdf" --output "Bộ dữ liệu mẫu\WL_NGUYEN_THI_THU_HUYEN_Secure.pdf" --logo "rules\logo worklink.png"</code></pre>
+        <pre><code>python scripts/anonymize_pdf.py --input "Bộ dữ liệu mẫu\NGUYEN-THI-THU-HUYEN-TopCV.vn-160626.192455.pdf" --output "Bộ dữ liệu mẫu\WL_NGUYEN_THI_THU_HUYEN_Secure.pdf" --logo "rules\logo.png"</code></pre>
         
-        <h2>Logo Thương Hiệu Worklink:</h2>
+        <h2>Logo Thương Hiệu:</h2>
         <p>Logo thương hiệu được chèn vào góc trên bên trái vùng nội dung chính (tọa độ <code>x=232, y=5, w=60, h=31</code>) của file PDF:</p>
-        <img src="logo worklink.png" alt="Worklink Logo" style="max-width: 250px; display: block; margin: 15px 0; padding: 10px; border: 1px solid var(--gray-300); border-radius: 4px; background-color: #ffffff;">
+        <img src="logo.png" alt="Logo" style="max-width: 250px; display: block; margin: 15px 0; padding: 10px; border: 1px solid var(--gray-300); border-radius: 4px; background-color: #ffffff;">
 
         <h2>Nguyên Tắc Bảo Mật Cần Tuân Thủ:</h2>
         <ul>
