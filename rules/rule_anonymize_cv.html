@@ -51,11 +51,11 @@
         
         <h3>Tùy chọn A: Xử lý file Word (.docx) và chuyển sang PDF</h3>
         <p>Sử dụng script <code>anonymize_cv.py</code> để lọc thông tin liên hệ nhạy cảm, chuẩn hóa niên hiệu năm Nhật Bản sang năm Dương lịch và tự động chuyển đổi sang PDF qua MS Word COM API.</p>
-        <pre><code>python scripts/anonymize_cv.py --input "Bộ dữ liệu mẫu\VU HONG TRANG_2026_JP.docx" --output_docx "Bộ dữ liệu mẫu\WL_VU_HONG_TRANG_2026_JP_Secure.docx" --output_pdf "Bộ dữ liệu mẫu\WL_VU_HONG_TRANG_2026_JP_Secure.pdf"</code></pre>
+        <pre><code>python scripts/anonymize_cv.py --input "Bộ dữ liệu mẫu\VU HONG TRANG_2026_JP.docx" --output_docx "Bộ dữ liệu mẫu\CV_VU_HONG_TRANG_2026_JP_Secure.docx" --output_pdf "Bộ dữ liệu mẫu\CV_VU_HONG_TRANG_2026_JP_Secure.pdf"</code></pre>
         
         <h3>Tùy chọn B: Xử lý trực tiếp trên file PDF gốc & Chèn Logo</h3>
         <p>Sử dụng script <code>anonymize_pdf.py</code> kết hợp thư viện <code>PyMuPDF</code> để tìm tọa độ text (SĐT, Email), vẽ đè các khối chữ nhật màu nền (màu kem <code>#e8ded1</code> hoặc trắng) để che giấu và chèn logo trực tiếp vào file PDF đích.</p>
-        <pre><code>python scripts/anonymize_pdf.py --input "Bộ dữ liệu mẫu\NGUYEN-THI-THU-HUYEN-TopCV.vn-160626.192455.pdf" --output "Bộ dữ liệu mẫu\WL_NGUYEN_THI_THU_HUYEN_Secure.pdf" --logo "rules\logo.png"</code></pre>
+        <pre><code>python scripts/anonymize_pdf.py --input "Bộ dữ liệu mẫu\NGUYEN-THI-THU-HUYEN-TopCV.vn-160626.192455.pdf" --output "Bộ dữ liệu mẫu\CV_NGUYEN_THI_THU_HUYEN_Secure.pdf" --logo "rules\logo.png"</code></pre>
         
         <h2>Logo Thương Hiệu:</h2>
         <p>Logo thương hiệu được chèn vào góc trên bên trái vùng nội dung chính (tọa độ <code>x=232, y=5, w=60, h=31</code>) của file PDF:</p>
