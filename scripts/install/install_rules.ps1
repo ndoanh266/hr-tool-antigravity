@@ -19,6 +19,8 @@ function Write-Log {
 # 1. Determine directories
 $currentDir = [System.IO.Path]::GetFullPath("$PSScriptRoot\..\..")
 $guiScript = "$currentDir\scripts\install\installer_gui.ps1"
+$powershellCmd = (Get-Command powershell.exe -ErrorAction SilentlyContinue).Path
+if (-not $powershellCmd) { $powershellCmd = "powershell.exe" }
 
 Write-Log "[INFO] Khoi dong giao dien cau hinh..."
 
@@ -26,7 +28,7 @@ Write-Log "[INFO] Khoi dong giao dien cau hinh..."
 if (Test-Path $tempPathFile) { Remove-Item $tempPathFile -Force }
 
 # 2. Run GUI Stage 1 (Collection)
-$proc = Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$guiScript`" -RepoDir `"$currentDir`"" -Wait -NoNewWindow -PassThru
+$proc = Start-Process -FilePath $powershellCmd -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$guiScript`" -RepoDir `"$currentDir`"" -Wait -NoNewWindow -PassThru
 if ($proc.ExitCode -ne 0) {
     Write-Log "[ERROR] GUI Stage 1 thoat voi ma loi $($proc.ExitCode)"
     Read-Host "Nhan Enter de thoat..."
@@ -110,7 +112,7 @@ Write-Log "[INFO] Drive Letter to pass: $finalCvDrive"
 
 # 8. Run GUI Stage 3 (Success Screen)
 Write-Log "[INFO] Dang khoi dong giao dien thong bao thanh cong..."
-$proc = Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$guiScript`" -Success -RepoDir `"$repoDir`" -CvDir `"$cvDir`" -DriveLetter `"$finalCvDrive`"" -Wait -NoNewWindow -PassThru
+$proc = Start-Process -FilePath $powershellCmd -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$guiScript`" -Success -RepoDir `"$repoDir`" -CvDir `"$cvDir`" -DriveLetter `"$finalCvDrive`"" -Wait -NoNewWindow -PassThru
 
 Write-Log "[SUCCESS] Toan bo qua trinh thiet lap da hoan tat!"
 Read-Host "Nhan Enter de dong cua so..."
