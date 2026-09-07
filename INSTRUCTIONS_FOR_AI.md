@@ -3,6 +3,11 @@
 Chào Antigravity. Người dùng tin tưởng vào trí tuệ nhân tạo trực tiếp của bạn (AI Agent) và muốn tiết kiệm chi phí gọi API bên ngoài. 
 Vì vậy, **bạn sẽ tự mình xử lý toàn bộ các tác vụ tư duy, phân tích, dịch thuật và tổng hợp bằng chính năng lực của mình**, thay vì chạy các file script Python gọi API OpenRouter. Bạn chỉ chạy các script Python thuần cho các tác vụ hệ thống (đọc/ghi file, tìm kiếm web, lọc từ cấm).
 
+> 💡 **Quy tắc ưu tiên Script tùy biến của Người dùng:**
+> Trước khi thực thi bất kỳ script Python hệ thống nào (ví dụ `extract_text.py`, `write_to_excel.py`...), **bạn MUST kiểm tra xem file tương ứng có tồn tại trong thư mục `custom/scripts/` hay không**. 
+> - Nếu file có trong `custom/scripts/` (do người dùng tự nâng cấp/tùy biến), **ưu tiên chạy file trong `custom/scripts/`**.
+> - Nếu không có, mặc định chạy file chuẩn trong `core/scripts/`.
+
 ## Quy Trình 3 Bước Điều Hướng & Thực Thi:
 
 ### Bước 1: Đọc File Luật Tổng Quát
