@@ -27,7 +27,7 @@ try {
     Write-Log "Dang khoi tao Form"
     $form = New-Object System.Windows.Forms.Form
     $form.Text = "HR Tool Antigravity v1.6 - Installer Wizard"
-    $form.Size = New-Object System.Drawing.Size(550, 500)
+    $form.Size = New-Object System.Drawing.Size(550, 560)
     $form.StartPosition = "CenterScreen"
     $form.FormBorderStyle = "FixedDialog"
     $form.MaximizeBox = $false
