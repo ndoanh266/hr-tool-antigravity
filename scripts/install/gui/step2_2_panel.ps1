@@ -1,4 +1,4 @@
-﻿﻿param($form, $globalState)
+param($form, $globalState)
 
 
 
@@ -448,32 +448,37 @@ $panel.Controls.Add($p2_2BtnIconBrowse)
 
 
 
+# Rule Update Option Label
+$p2_2RuleLabel = New-Object System.Windows.Forms.Label
+$p2_2RuleLabel.Text = "Cấu hình Rule & Script đã cải tiến:"
+$p2_2RuleLabel.Font = New-Object System.Drawing.Font("Segoe UI", 10, [System.Drawing.FontStyle]::Bold)
+$p2_2RuleLabel.Location = New-Object System.Drawing.Point(10, 315)
+$p2_2RuleLabel.Size = New-Object System.Drawing.Size(400, 20)
+$panel.Controls.Add($p2_2RuleLabel)
+
+$p2_2ComboRule = New-Object System.Windows.Forms.ComboBox
+$p2_2ComboRule.Font = New-Object System.Drawing.Font("Segoe UI", 9.5)
+$p2_2ComboRule.Location = New-Object System.Drawing.Point(10, 338)
+$p2_2ComboRule.Size = New-Object System.Drawing.Size(500, 25)
+$p2_2ComboRule.DropDownStyle = [System.Windows.Forms.ComboBoxStyle]::DropDownList
+$p2_2ComboRule.Items.Add("Giữ nguyên các Rule/Script đã cải tiến (Chỉ cập nhật file cấu hình)") | Out-Null
+$p2_2ComboRule.Items.Add("Xóa bỏ toàn bộ tùy biến & Cập nhật Rule mới nhất từ GitHub") | Out-Null
+$p2_2ComboRule.SelectedIndex = 0
+$panel.Controls.Add($p2_2ComboRule)
+
 # Skip Checkbox
-
 $p2_2SkipBox = New-Object System.Windows.Forms.CheckBox
-
 $p2_2SkipBox.Text = "Bỏ qua bước liên kết ổ đĩa ảo (Dùng thư mục CV mặc định của tool)"
-
 $p2_2SkipBox.Font = New-Object System.Drawing.Font("Segoe UI", 9)
-
-$p2_2SkipBox.Location = New-Object System.Drawing.Point(10, 320)
-
-$p2_2SkipBox.Size = New-Object System.Drawing.Size(480, 25)
-
+$p2_2SkipBox.Location = New-Object System.Drawing.Point(10, 370)
+$p2_2SkipBox.Size = New-Object System.Drawing.Size(480, 22)
 $p2_2SkipBox.add_CheckedChanged({
-
     $p2_2Txt.Enabled = -not $p2_2SkipBox.Checked
-
     $p2_2BtnBrowse.Enabled = -not $p2_2SkipBox.Checked
-
     $p2_2TxtName.Enabled = -not $p2_2SkipBox.Checked
-
     $p2_2ComboIcon.Enabled = -not $p2_2SkipBox.Checked
-
     $p2_2BtnIconBrowse.Enabled = (-not $p2_2SkipBox.Checked) -and ($p2_2ComboIcon.SelectedIndex -eq 4)
-
 })
-
 $panel.Controls.Add($p2_2SkipBox)
 
 
@@ -554,24 +559,18 @@ $p2_2BtnInstall.add_Click({
 
     
 
+    $ruleMode = if ($p2_2ComboRule.SelectedIndex -eq 1) { "Overwrite" } else { "Keep" }
+
     if ($cvDir -ne "SKIP" -and [string]::IsNullOrEmpty($cvDir)) {
-
         [System.Windows.Forms.MessageBox]::Show($form, "Vui lòng chọn đường dẫn CV hoặc click bỏ qua.", "Cảnh báo", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Warning)
-
         return
-
     }
 
     $form.Hide()
-
     $tempFile = "$env:TEMP\hr_tool_setup_paths.txt"
-
     $utf8NoBOM = New-Object System.Text.UTF8Encoding $false
-
-    [System.IO.File]::WriteAllText($tempFile, "$repoDir|$cvDir|$driveLabel|$driveIcon", $utf8NoBOM)
-
+    [System.IO.File]::WriteAllText($tempFile, "$repoDir|$cvDir|$driveLabel|$driveIcon|$ruleMode", $utf8NoBOM)
     $form.DialogResult = [System.Windows.Forms.DialogResult]::OK
-
     $form.Close()
 
 })

@@ -48,6 +48,7 @@ $repoDir = $parts[0].Trim()
 $cvDir = $parts[1].Trim()
 $driveLabel = if ($parts.Length -ge 3) { $parts[2].Trim() } else { "Google Shared with me" }
 $driveIcon = if ($parts.Length -ge 4) { $parts[3].Trim() } else { "default" }
+$updateMode = if ($parts.Length -ge 5) { $parts[4].Trim() } else { "Keep" }
 
 if ($repoDir -eq "CANCEL") {
     Write-Log "[INFO] Nguoi dung da huy setup."
@@ -57,6 +58,7 @@ if ($repoDir -eq "CANCEL") {
 Write-Log "[INFO] Thu muc cai dat: $repoDir"
 Write-Log "[INFO] Thu muc CV: $cvDir"
 Write-Log "[INFO] Ten hien thi o dia: $driveLabel"
+Write-Log "[INFO] Che do cap nhat Rule: $updateMode"
 
 # 4. Sync source via Git if Git is installed
 if (Get-Command git -ErrorAction SilentlyContinue) {
@@ -86,7 +88,7 @@ if (Test-Path $setupSubstScript) {
 Write-Log "[INFO] Dang dang ky luat he thong..."
 $registerRulesScript = "$repoDir\scripts\install\register_rules.ps1"
 if (Test-Path $registerRulesScript) {
-    & $registerRulesScript -RepoDir $repoDir
+    & $registerRulesScript -RepoDir $repoDir -UpdateMode $updateMode
 } else {
     Write-Log "[ERROR] Khong tim thay script register_rules.ps1"
 }
