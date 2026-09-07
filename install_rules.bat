@@ -2,20 +2,6 @@
 setlocal enabledelayedexpansion
 chcp 65001 >nul
 
-:: Determine the original directory to preserve across redirection and elevation
-if "%~1" neq "" (
-    set "ORIGINAL_DIR=%~1"
-) else (
-    set "ORIGINAL_DIR=%~dp0"
-)
-
-:: If not running from TEMP, copy to TEMP and execute from there to prevent file lock issues during Git updates
-if "%~dp0" neq "%TEMP%\" (
-    copy /y "%~dpnx0" "%TEMP%\install_rules.bat" >nul
-    "%TEMP%\install_rules.bat" "%ORIGINAL_DIR%"
-    exit /b %errorlevel%
-)
-
 :: Ensure target installation/logging directory exists
 if not exist "C:\mkt" mkdir "C:\mkt"
 
@@ -52,7 +38,7 @@ if "!MISSING_DEP!"=="1" (
         echo Phat hien may tinh cua ban thieu moi truong chay tool [Python, Git hoac PowerShell].
         echo Dang yeu cau quyen Administrator de tu dong tai va cai dat ngam cac thanh phan con thieu...
         echo.
-        powershell -Command "Start-Process '%~dpnx0' -ArgumentList '\"%ORIGINAL_DIR%\"' -Verb RunAs"
+        powershell -Command "Start-Process '%~dpnx0' -Verb RunAs"
         exit /b 0
     )
 )
@@ -124,7 +110,7 @@ if %errorlevel% neq 0 (
 )
 
 :: 5. Check and retrieve / update installer files from GitHub
-set "CURRENT_DIR=%ORIGINAL_DIR%"
+set "CURRENT_DIR=%~dp0"
 set "CURRENT_DIR=%CURRENT_DIR:~0,-1%"
 
 :: Always change directory to the batch file's folder to prevent working directory issues (like C:\Windows\System32 when run as admin)
@@ -137,7 +123,7 @@ if exist "%CURRENT_DIR%\hr-tool-antigravity" (
 )
 
 echo ========================================================
-echo  [HE THONG] KIEM TRA ^& CAP NHAT HR TOOL ANTIGRAVITY
+echo  [HE THONG] KIEM TRA & CAP NHAT HR TOOL ANTIGRAVITY
 echo ========================================================
 echo Dang kiem tra va cap nhat phien ban moi nhat tu GitHub...
 echo.
@@ -145,18 +131,34 @@ echo.
 where git >nul 2>nul
 if %errorlevel% equ 0 (
     if exist "!REPO_DIR!\.git" (
-        echo [*] Dang cap nhat ma nguon qua Git...
+        echo [*] Dang kiem tra thay doi local ma nguon...
         pushd "!REPO_DIR!"
-        git checkout -- . >nul 2>&1
         git fetch origin main >nul 2>&1
-        git pull origin main
+        git status --porcelain | findstr /R "." >nul
+        if !errorlevel! equ 0 (
+            echo ========================================================
+            echo  [CANH BAO] PHAT HIEN CAU HINH/RULE DA DUOC THAY DOI
+            echo ========================================================
+            echo Phat hien cac file script hoac rule da duoc ban cai tien/chinh sua.
+            echo Tien trinh se giu nguyen thay doi local va chay buoc kiem tra chi tiet...
+        ) else (
+            git pull origin main
+        )
         popd
     ) else if exist "%CURRENT_DIR%\.git" (
-        echo [*] Dang cap nhat ma nguon qua Git...
+        echo [*] Dang kiem tra thay doi local ma nguon...
         pushd "%CURRENT_DIR%"
-        git checkout -- . >nul 2>&1
         git fetch origin main >nul 2>&1
-        git pull origin main
+        git status --porcelain | findstr /R "." >nul
+        if !errorlevel! equ 0 (
+            echo ========================================================
+            echo  [CANH BAO] PHAT HIEN CAU HINH/RULE DA DUOC THAY DOI
+            echo ========================================================
+            echo Phat hien cac file script hoac rule da duoc ban cai tien/chinh sua.
+            echo Tien trinh se giu nguyen thay doi local va chay buoc kiem tra chi tiet...
+        ) else (
+            git pull origin main
+        )
         popd
     ) else (
         for %%I in ("%CURRENT_DIR%") do set "DIR_NAME=%%~nxI"
@@ -197,7 +199,7 @@ echo [OK] Dong bo phien ban thanh cong!
 echo.
 
 echo ========================================================
-echo  [MOI TRUONG] KIEM TRA ^& CAI DAT ANTIGRAVITY IDE
+echo  [MOI TRUONG] KIEM TRA & CAI DAT ANTIGRAVITY IDE
 echo ========================================================
 powershell -NoProfile -ExecutionPolicy Bypass -File "!REPO_DIR!\scripts\install_antigravity.ps1"
 echo.
