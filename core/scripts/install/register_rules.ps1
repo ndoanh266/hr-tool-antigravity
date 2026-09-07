@@ -17,7 +17,7 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
     if (Test-Path "$RepoDir\.git") {
         Push-Location $RepoDir
         Write-Log "[INFO] Dang tu dong cap nhat cac file he thong Core tu Admin (GitHub)..."
-        git checkout origin/main -- core/ >nul 2>&1
+        git checkout origin/main -- core/ *>$null
         Pop-Location
     }
 }
