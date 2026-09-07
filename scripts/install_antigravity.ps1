@@ -122,9 +122,12 @@ if (-not $appPath -or -not (Test-Path $appPath)) {
 # 3. Install AG Auto Click & Scroll extension
 if (Test-Path $appPath) {
     $binDir = Join-Path (Split-Path $appPath) "bin"
-    $cmdPath = Join-Path $binDir "antigravity.cmd"
+    $cmdPath = Join-Path $binDir "antigravity-ide.cmd"
+    if (-not (Test-Path $cmdPath)) {
+        $cmdPath = Join-Path $binDir "antigravity.cmd"
+    }
     if (Test-Path $cmdPath) {
-        Write-Message "Dang kiem tra danh sach extension..."
+        Write-Message "Dang kiem tra danh sach extension qua CLI ($cmdPath)..."
         $installed = & $cmdPath --list-extensions 2>$null
         if ($installed -notcontains "zixfel.ag-auto-click-scroll") {
             Write-Message "Dang tien hanh cai dat extension AG Auto Click & Scroll..."
