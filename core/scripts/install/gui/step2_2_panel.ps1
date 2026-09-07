@@ -225,7 +225,7 @@ $panel.Controls.Add($p2_2BtnIconBrowse)
 
 # Rule Update Option Label
 $p2_2RuleLabel = New-Object System.Windows.Forms.Label
-$p2_2RuleLabel.Text = "Cấu hình Rule & Script đã cải tiến:"
+$p2_2RuleLabel.Text = "Cấu hình Rule & Script cải tiến (Thư mục custom/):"
 $p2_2RuleLabel.Font = New-Object System.Drawing.Font("Segoe UI", 9.5, [System.Drawing.FontStyle]::Bold)
 $p2_2RuleLabel.Location = New-Object System.Drawing.Point(10, 255)
 $p2_2RuleLabel.Size = New-Object System.Drawing.Size(400, 18)
@@ -236,8 +236,8 @@ $p2_2ComboRule.Font = New-Object System.Drawing.Font("Segoe UI", 9.5)
 $p2_2ComboRule.Location = New-Object System.Drawing.Point(10, 275)
 $p2_2ComboRule.Size = New-Object System.Drawing.Size(500, 23)
 $p2_2ComboRule.DropDownStyle = [System.Windows.Forms.ComboBoxStyle]::DropDownList
-$p2_2ComboRule.Items.Add("Giữ nguyên các Rule/Script đã cải tiến (Chỉ cập nhật file cấu hình)") | Out-Null
-$p2_2ComboRule.Items.Add("Xóa bỏ toàn bộ tùy biến & Cập nhật Rule mới nhất từ GitHub") | Out-Null
+$p2_2ComboRule.Items.Add("Giữ nguyên các Rule/Script đã cải tiến trong custom/ (Chỉ update Core)") | Out-Null
+$p2_2ComboRule.Items.Add("Xóa bỏ tùy biến trong custom/ & Cập nhật Rule mới nhất từ Admin (GitHub)") | Out-Null
 $p2_2ComboRule.SelectedIndex = 0
 $panel.Controls.Add($p2_2ComboRule)
 

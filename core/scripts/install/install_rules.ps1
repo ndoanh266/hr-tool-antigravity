@@ -17,8 +17,8 @@ function Write-Log {
 "===================================================" | Out-File -FilePath $logFile -Append -Encoding utf8
 
 # 1. Determine directories
-$currentDir = [System.IO.Path]::GetFullPath("$PSScriptRoot\..\..")
-$guiScript = "$currentDir\scripts\install\installer_gui.ps1"
+$currentDir = [System.IO.Path]::GetFullPath("$PSScriptRoot\..\..\..")
+$guiScript = "$currentDir\core\scripts\install\installer_gui.ps1"
 $powershellCmd = (Get-Command powershell.exe -ErrorAction SilentlyContinue).Path
 if (-not $powershellCmd) { $powershellCmd = "powershell.exe" }
 
@@ -77,7 +77,7 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
 
 # 5. Run setup_subst.ps1
 Write-Log "[INFO] Dang cau hinh o dia ao..."
-$setupSubstScript = "$repoDir\scripts\install\setup_subst.ps1"
+$setupSubstScript = "$repoDir\core\scripts\install\setup_subst.ps1"
 if (Test-Path $setupSubstScript) {
     & $setupSubstScript -CvDir $cvDir -RepoDir $repoDir -DriveLabel $driveLabel -DriveIcon $driveIcon
 } else {
@@ -86,7 +86,7 @@ if (Test-Path $setupSubstScript) {
 
 # 6. Run register_rules.ps1
 Write-Log "[INFO] Dang dang ky luat he thong..."
-$registerRulesScript = "$repoDir\scripts\install\register_rules.ps1"
+$registerRulesScript = "$repoDir\core\scripts\install\register_rules.ps1"
 if (Test-Path $registerRulesScript) {
     & $registerRulesScript -RepoDir $repoDir -UpdateMode $updateMode
 } else {

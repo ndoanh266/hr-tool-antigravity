@@ -12,28 +12,38 @@ function Write-Log {
 
 Write-Log "Bat dau register_rules.ps1. RepoDir=$RepoDir, UpdateMode=$UpdateMode"
 
-# Check if there are modified rules/scripts in RepoDir via git status
-$hasLocalModifications = $false
+# Always auto-update core system scripts (Admin controlled)
 if (Get-Command git -ErrorAction SilentlyContinue) {
     if (Test-Path "$RepoDir\.git") {
         Push-Location $RepoDir
-        $gitStatus = git status --porcelain
+        Write-Log "[INFO] Dang tu dong cap nhat cac file he thong Core tu Admin (GitHub)..."
+        git checkout origin/main -- core/ >nul 2>&1
+        Pop-Location
+    }
+}
+
+# Check if there are modified custom rules/scripts in RepoDir/custom via git status
+$hasCustomModifications = $false
+if (Get-Command git -ErrorAction SilentlyContinue) {
+    if (Test-Path "$RepoDir\.git") {
+        Push-Location $RepoDir
+        $gitStatus = git status --porcelain custom/
         Pop-Location
         if ($gitStatus) {
-            $hasLocalModifications = $true
-            Write-Log "[INFO] Phat hien cac rule/script da duoc nguoi dung chinh sua/cai tien."
+            $hasCustomModifications = $true
+            Write-Log "[INFO] Phat hien cac rule/script trong thu muc custom/ da duoc nguoi dung chinh sua/cai tien."
         }
     }
 }
 
-if ($hasLocalModifications) {
+if ($hasCustomModifications) {
     if ($UpdateMode -eq "Ask") {
         Write-Host ""
         Write-Host "=========================================================" -ForegroundColor Yellow
-        Write-Host " PHAT HIEN RULE / SCRIPT DA DUOC NGUOI DUNG CAI TIEN!" -ForegroundColor Yellow
+        Write-Host " PHAT HIEN RULE / SCRIPT CAI TIEN TRONG THU MUC CUSTOM/ !" -ForegroundColor Yellow
         Write-Host "=========================================================" -ForegroundColor Yellow
-        Write-Host "1. Reset/Cap nhat toan bo (Xoa bo rule/script da sua de dung phien ban moi nhat tu repo)"
-        Write-Host "2. Giu nguyen rule da sua (Chi cap nhat cac file cau hinh va GEMINI.md)"
+        Write-Host "1. Reset/Cap nhat custom/ (Xoa bo cai tien de dung phien ban moi nhat tu Admin)"
+        Write-Host "2. Giu nguyen custom/ (Giu lai cac rule/script ban da cai tien)"
         Write-Host ""
         $choice = Read-Host "Nhap lua chon cua ban (1 hoac 2) [Mac dinh: 2]"
         if ($choice -eq "1") {
@@ -44,16 +54,15 @@ if ($hasLocalModifications) {
     }
 
     if ($UpdateMode -eq "Overwrite") {
-        Write-Log "[INFO] Nguoi dung chon OVERWRITE toàn bo rule/script."
-        Write-Host "[INFO] Dang khoi phuc toan bo rule & script theo ban goc moi nhat..." -ForegroundColor Cyan
+        Write-Log "[INFO] Nguoi dung chon OVERWRITE thu muc custom/."
+        Write-Host "[INFO] Dang khoi phuc thu muc custom/ theo ban goc moi nhat tu Admin..." -ForegroundColor Cyan
         Push-Location $RepoDir
-        git reset --hard HEAD
-        git pull origin main
+        git checkout origin/main -- custom/
         Pop-Location
-        Write-Host "[OK] Da cap nhat va khoi phuc thanh cong!" -ForegroundColor Green
+        Write-Host "[OK] Da cap nhat va khoi phuc thanh cong thu muc custom/!" -ForegroundColor Green
     } else {
-        Write-Log "[INFO] Nguoi dung chon KEEP cac rule/script da sua."
-        Write-Host "[INFO] Giu nguyen cac file rule/script da duoc ban cai tien. Tien hanh cap nhat file cau hinh..." -ForegroundColor Yellow
+        Write-Log "[INFO] Nguoi dung chon KEEP cac rule/script trong custom/."
+        Write-Host "[INFO] Giu nguyen cac file rule/script ban da cai tien trong custom/. Dang cap nhat file cau hinh..." -ForegroundColor Yellow
     }
 }
 

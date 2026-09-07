@@ -201,10 +201,10 @@ echo.
 echo ========================================================
 echo  [MOI TRUONG] KIEM TRA ^& CAI DAT ANTIGRAVITY IDE
 echo ========================================================
-powershell -NoProfile -ExecutionPolicy Bypass -File "!REPO_DIR!\scripts\install_antigravity.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "!REPO_DIR!\core\scripts\install_antigravity.ps1"
 echo.
 
-powershell -NoProfile -ExecutionPolicy Bypass -File "!REPO_DIR!\scripts\install\install_rules.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "!REPO_DIR!\core\scripts\install\install_rules.ps1"
 exit /b 0
 
 :: Downloader helper function
